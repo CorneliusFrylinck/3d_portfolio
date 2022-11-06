@@ -5,6 +5,8 @@ import { Ground } from "./components/Ground.js"
 import { Player } from "./components/Player.js"
 import './App.css';
 import stairUrl from "./assets/Stairs.glb"
+import { RigidBody } from "@react-three/rapier"
+import { TextFrameManager } from "./components/TextFrameManager.js"
 
 function App() {
   const { nodes, materials } = useGLTF(stairUrl)
@@ -23,10 +25,11 @@ function App() {
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
         <Physics gravity={[0, -30, 0]}>
-          <group dispose={null}  position={[1, 1, 0]}  scale={0.5}>
+          <RigidBody dispose={null}  position={[0, 1, -10]}  scale={[1, 1, 6]} type="fixed" colliders="hull">
               <mesh geometry={nodes.Cube.geometry} material={materials.A} />
               <mesh geometry={nodes.Lining.geometry} material={materials.LiningMat} />
-          </group>
+              <TextFrameManager />
+          </RigidBody>
           <Ground />
           <Player />
         </Physics>
