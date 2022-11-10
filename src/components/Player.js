@@ -4,13 +4,14 @@ import { useRef } from "react"
 import { useThree, useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
+import { observer } from "mobx-react-lite"
 
 var SPEED = 5
 const direction = new THREE.Vector3()
 const frontVector = new THREE.Vector3()
 const sideVector = new THREE.Vector3()
 
-export function Player() {
+export default observer(function Player() {
   const ref = useRef()
   const rapier = useRapier()
   const { camera } = useThree()
@@ -45,4 +46,4 @@ export function Player() {
       </RigidBody>
     </>
   )
-}
+})
