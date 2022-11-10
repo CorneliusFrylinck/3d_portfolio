@@ -2,7 +2,8 @@ import ImageFrame from "./ImageFrame"
 import luxit from '../assets/luxit.png'
 import saveTheDate from '../assets/saveTheDate.png'
 
-export function ImageFrameManager(props) {
+export function ImageFrameManager() {
+  // List of imageFrames to create
   const images = [
     { 
       text: "Slide show",

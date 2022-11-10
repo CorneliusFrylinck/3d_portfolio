@@ -18,13 +18,19 @@ class ImageStore {
 
     // Update selected slideshow
     moveImage = () => {
+        // Return if not hovering
         if (this.hover === null) return;
+        // Get hovered
         let selectedImage = this.images.find(x => x.key === this.hover.key);
+        // Check if slideshow
         if (selectedImage.totalImages < 2) return;
+        // If on last slide
         if (selectedImage.idx === selectedImage.totalImages-1) {
+            // Revert to first slide
             selectedImage.idx = 0;
             return;
         }
+        // Move to next slide
         ++selectedImage.idx;
     }
 

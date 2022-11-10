@@ -11,6 +11,7 @@ export default observer(function ImageFrame(props) {
   const [images,] = useState(props.images);
   // eslint-disable-next-line no-unused-vars
   const [key,] = useState(props.keyProp);
+  // TODO - remove if not using link to project/source, or use it
   const [link,] = useState(props.link);
   const [index,] = useState(props.index);
   const group = useRef();
@@ -22,7 +23,7 @@ export default observer(function ImageFrame(props) {
   const onMove = useCallback((e) => {
     e.stopPropagation()
     // Set as hovered image
-    // TODO check distance
+    // TODO - check distance in player, update implementation
     imageStore.setHover({key: key, x: x, y: y});
     // Set hovering for highlighting
     setHover(true);
