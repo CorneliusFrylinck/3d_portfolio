@@ -19,6 +19,9 @@ export default observer(function ImageFrame(props) {
   const [imageIdx, setImageIdx] = useState(0);
   const [hover, setHover] = useState(false)
   const checker = useRef();
+  const [imageUrl, setImageUrl] = useState(images[0]);
+
+  const imageStore = useStore();
 
   const onMove = useCallback((e) => {
     e.stopPropagation()
@@ -39,8 +42,6 @@ export default observer(function ImageFrame(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const imageStore = useStore();
-
   useEffect(() => {
     // Add image to context store
     imageStore.addImage({key: key, idx: imageIdx, totalImages: images.length});
@@ -48,23 +49,24 @@ export default observer(function ImageFrame(props) {
   }, [])
 
   useEffect(() => {
-    // apply rotation
+    // Apply rotation
     group.current.rotateY(angle)
   }, [angle])
 
   useEffect(() => {
-    // check if slideshow
+    // Check if slideshow
     if (images.length < 2) return;
-    // get current image
+    // Check if hovering over this
+    if (imageStore.getHoverKey() !== key) return;
+    // Get current image
     let thisImage = imageStore.getImage(key);
-    // check if different image should be loaded
+    // Check if different image should be loaded
     if (thisImage.idx !== imageIdx) {
-      console.log("Updating image...")
       setImageIdx(thisImage.idx);
-      image.url = images[imageIdx];
+      setImageUrl(images[imageIdx]);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageStore.images])
+  }, [imageStore.hover])
 
   return (
     <group ref={group}>
@@ -86,7 +88,7 @@ export default observer(function ImageFrame(props) {
       {/* Image */}
       <mesh position={[x, y, z]}>
         <boxGeometry args={[1, 1, 0.01]} />
-        <Image ref={image} raycast={() => null} position={[0, 0, 0.008]} url={images[0]} />
+        <Image ref={image} raycast={() => null} position={[0, 0, 0.008]} url={imageUrl} />
       </mesh>
       {/* Display text if slideshow */}
       {images.length > 1 && (

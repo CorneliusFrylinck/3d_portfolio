@@ -1,10 +1,11 @@
 import * as THREE from "three"
 import * as RAPIER from "@dimforge/rapier3d-compat"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useThree, useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 import { observer } from "mobx-react-lite"
+import { useStore } from "../stores/imageStore";
 
 var SPEED = 5
 const direction = new THREE.Vector3()
@@ -16,24 +17,38 @@ export default observer(function Player() {
   const rapier = useRapier()
   const { camera } = useThree()
   const [, get] = useKeyboardControls()
+  const imageStore = useStore();
+  const [movingImage, setMovingImage] = useState(false);
+
   useFrame((state) => {
     const { forward, backward, left, right, jump, action } = get()
     const velocity = ref.current.linvel()
     
-    // update camera
+    // Update camera
     camera.position.set(...ref.current.translation())
 
-    // movement
+    // Movement
     frontVector.set(0, 0, backward - forward)
+
+    // Check if action button 'E' is being pressed
     if (action) {
-      SPEED += 1
+      // Check if action has been implemented as of yet
+      if (!movingImage) {
+        // Update image
+        imageStore.moveHoveredImage();
+      }
+      // Set as clicked
+      setMovingImage(true);
+    }else {
+      // Set as not released
+      setMovingImage(false);
     }
     
     sideVector.set(left - right, 0, 0)
     direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED).applyEuler(camera.rotation)
     ref.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z })
 
-    // jumping
+    // Jumping
     const world = rapier.world.raw()
     const ray = world.castRay(new RAPIER.Ray(ref.current.translation(), { x: 0, y: -1, z: 0 }))
     const grounded = ray && ray.collider && Math.abs(ray.toi) <= 1.75

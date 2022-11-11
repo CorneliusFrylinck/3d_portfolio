@@ -17,7 +17,9 @@ class ImageStore {
     }
 
     // Update selected slideshow
-    moveImage = () => {
+    moveHoveredImage = () => {
+        console.log("moving");
+        console.log(this.hover);
         // Return if not hovering
         if (this.hover === null) return;
         // Get hovered
@@ -40,7 +42,7 @@ class ImageStore {
     }
 
     // Set new hovered frame
-    setHoverKey = (hover) => {
+    setHover = (hover) => {
         this.hover = hover;
     }
 
