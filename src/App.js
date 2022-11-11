@@ -7,6 +7,7 @@ import './App.css';
 import { RigidBody } from "@react-three/rapier"
 import { TextFrameManager } from "./components/TextFrameManager.js"
 import { ImageFrameManager } from "./components/ImageFrameManager.js"
+import { StackShack } from "./components/StackShack.js"
 import { observer } from "mobx-react-lite"
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
             type="fixed" 
             colliders="hull"
           >
-              <TextFrameManager />
-              <ImageFrameManager />
+            <TextFrameManager />
+            <ImageFrameManager />
+            <StackShack />
           </RigidBody>
           <Ground />
           <Player />
