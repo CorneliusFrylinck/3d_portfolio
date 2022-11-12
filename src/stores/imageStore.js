@@ -6,6 +6,8 @@ class ImageStore {
     images = []
     // ImageFrame player is hovering on
     hover = null;
+    // Flag if action key pressed
+    actionFlag = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -22,18 +24,8 @@ class ImageStore {
         console.log(this.hover);
         // Return if not hovering
         if (this.hover === null) return;
-        // Get hovered
-        let selectedImage = this.images.find(x => x.key === this.hover.key);
-        // Check if slideshow
-        if (selectedImage.totalImages < 2) return;
-        // If on last slide
-        if (selectedImage.idx === selectedImage.totalImages-1) {
-            // Revert to first slide
-            selectedImage.idx = 0;
-            return;
-        }
-        // Move to next slide
-        ++selectedImage.idx;
+        // Set action flag
+        this.actionFlag = true;
     }
 
     // Get frame

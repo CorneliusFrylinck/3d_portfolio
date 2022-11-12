@@ -7,19 +7,23 @@ export default observer(function ImageFrame(props) {
   const [x,] = useState(props.x);
   const [y,] = useState(props.y);
   const [z,] = useState(props.z);
-  const [angle,] = useState(props.angle);
-  const [images,] = useState(props.images);
+  const [text,] = useState(props.text);
   // eslint-disable-next-line no-unused-vars
   const [key,] = useState(props.keyProp);
   // TODO - remove if not using link to project/source, or use it
   const [link,] = useState(props.link);
   const [index,] = useState(props.index);
+  const [angle,] = useState(props.angle);
+  const [images,] = useState(props.images);
+  const [hover, setHover] = useState(false)
+  const [imageIdx, setImageIdx] = useState(0);
+  const [textScale,] = useState(props.textScale);
+  const [imageUrl, setImageUrl] = useState(images[0]);
+  const [displayingImage, setDisplayingImage] = useState(true);
+  const checker = useRef();
+  const textRef = useRef();
   const group = useRef();
   const image = useRef();
-  const [imageIdx, setImageIdx] = useState(0);
-  const [hover, setHover] = useState(false)
-  const checker = useRef();
-  const [imageUrl, setImageUrl] = useState(images[0]);
 
   const imageStore = useStore();
 
@@ -32,6 +36,7 @@ export default observer(function ImageFrame(props) {
     setHover(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   const onOut = useCallback(() => {
     // Set as none hovering if this is the current hovering
     if (imageStore.getHoverKey() === key) {
@@ -43,6 +48,9 @@ export default observer(function ImageFrame(props) {
   }, [])
 
   useEffect(() => {
+    image.current.position.setZ(0.009);
+    textRef.current.position.setZ(0);
+    console.log(image.current)
     // Add image to context store
     imageStore.addImage({key: key, idx: imageIdx, totalImages: images.length});
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,17 +62,19 @@ export default observer(function ImageFrame(props) {
   }, [angle])
 
   useEffect(() => {
-    // Check if slideshow
-    if (images.length < 2) return;
     // Check if hovering over this
-    if (imageStore.getHoverKey() !== key) return;
-    // Get current image
-    let thisImage = imageStore.getImage(key);
-    // Check if different image should be loaded
-    if (thisImage.idx !== imageIdx) {
-      setImageIdx(thisImage.idx);
-      setImageUrl(images[imageIdx]);
+    if (imageStore.getHoverKey() !== key || !imageStore.actionFlag) return;
+    imageStore.actionFlag = false;
+    // Check if image is being displayed
+    if (displayingImage) {
+      setDisplayingImage(false);
+      image.current.position.setZ(0);
+      textRef.current.position.setZ(0.009);
+      return;
     }
+    setDisplayingImage(true);
+    image.current.position.setZ(0.009);
+    textRef.current.position.setZ(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageStore.hover])
 
@@ -81,21 +91,24 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"white"} />
       </mesh>
       {/* Cover used to check if this canvas is selected */}
-      <mesh ref={checker} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.009]}>
+      <mesh ref={checker} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
         <meshStandardMaterial color={"black"} opacity={0} transparent />
+      </mesh>
+      {/* Blocker */}
+      <mesh onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.003]}>
+        <boxGeometry args={[1, 1, 0.01]} />
+        <meshStandardMaterial color={"white"} opacity={0} />
       </mesh>
       {/* Image */}
       <mesh position={[x, y, z]}>
         <boxGeometry args={[1, 1, 0.01]} />
-        <Image ref={image} raycast={() => null} position={[0, 0, 0.008]} url={imageUrl} />
+        <Image ref={image} raycast={() => null} position={[0, 0, 0.009]} url={imageUrl} />
       </mesh>
       {/* Display text if slideshow */}
-      {images.length > 1 && (
-        <Text maxWidth={1} textAlign={"center"} position={[x,y+0.7,z]} color={"#5c5c5c"}>
-          Press 'E' to view the next image
-        </Text>
-      )}
+      <Text ref={textRef} position={[x, y, z]} fontSize={textScale} maxWidth={1} textAlign={"center"} color={"#5c5c5c"}>
+        {text}
+      </Text>
     </group>
   )
 })

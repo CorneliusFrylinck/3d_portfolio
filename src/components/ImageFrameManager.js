@@ -3,7 +3,7 @@ import luxit from '../assets/luxit.png'
 import saveTheDate from '../assets/saveTheDate.png'
 
 export function ImageFrameManager() {
-  // List of imageFrames to create
+  // List of imageFrames
   const images = [
     { 
       text: "Slide show",
@@ -13,8 +13,8 @@ export function ImageFrameManager() {
       ],
       key: Math.random() * 10000000,
       link: "",
-      index: 0,
-      x: 0, y: 0, z: 0, angle: 0
+      index: 0, textScale: 0.4,
+      x: 6, y: 0, z: 0, angle: 0
     },
     { 
       text: "Single Image",
@@ -23,8 +23,8 @@ export function ImageFrameManager() {
       ],
       key: Math.random() * 10000000,
       link: "",
-      index: 1,
-      x: 1.5, y: 0, z: -0.1, angle: -0.1
+      index: 1, textScale: 0.4,
+      x: 8, y: 0, z: 0, angle: 0
     },
     { 
       text: "Single Image",
@@ -33,8 +33,8 @@ export function ImageFrameManager() {
       ],
       key: Math.random() * 10000000,
       link: "",
-      index: 2,
-      x: -1.5, y: 0, z: -0.1, angle: 0.1
+      index: 2, textScale: 0.4,
+      x: 10, y: 0, z: 0, angle: 0
     }
   ]
 
@@ -43,7 +43,7 @@ export function ImageFrameManager() {
       {images.map(f => 
         <ImageFrame 
           key={f.key} text={f.text} keyProp={f.key}
-          x={f.x} y={f.y} z={f.z} index={f.index}
+          x={f.x} y={f.y} z={f.z} index={f.index} textScale={f.textScale}
           angle={f.angle} images={f.images} link={f.link}
         />
       )}
