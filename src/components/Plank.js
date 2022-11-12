@@ -10,26 +10,25 @@ export function Plank(props) {
   const [y,] = useState(props.y);
   const [z,] = useState(props.z);
   const [scale,] = useState(props.scale);
+  const [textScale,] = useState(props.textScale);
   const [angleX,] = useState(props.angleX);
   const [angleY,] = useState(props.angleY);
   const [angleZ,] = useState(props.angleZ);
   const group = useRef();
-  const plankRef = useRef();
 
   const { nodes, materials } = useGLTF(plankUrl);
-  //const texture = useTexture(plank)
 
   useEffect(() => {
-    if (angleX) plankRef.current.rotateX(angleX);
-    if (angleY) plankRef.current.rotateY(angleY);
-    if (angleZ) plankRef.current.rotateZ(angleZ);
+    if (angleX) group.current.rotateX(angleX);
+    if (angleY) group.current.rotateY(angleY);
+    if (angleZ) group.current.rotateZ(angleZ);
   }, [angleX, angleY, angleZ])
 
   return (
     <group dispose={null} position={[x, y, z - 0.0011]} scale={scale? scale : 0.5} ref={group}>
-      <mesh ref={plankRef} geometry={nodes.Cube.geometry} material={materials.A} />
+      <mesh geometry={nodes.Cube.geometry} material={materials.A} />
       {text && (
-        <Text fontSize={0.125} position={[0, 0.77, 0.10]} scale={8} maxWidth={3} textAlign={"center"} color={"#3e1e1e"}>
+        <Text fontSize={textScale} position={[0, 0.77, 0.10]} scale={8} maxWidth={4} textAlign={"center"} color={"#3e1e1e"}>
           {text}
         </Text>
       )}

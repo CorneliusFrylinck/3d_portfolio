@@ -267,6 +267,7 @@ export function StackShack(props) {
 
   return (
     <>
+      <directionalLight position={[-12,1,1]} intensity={0.5} />
       {backWall.map(f => 
         <Plank 
           key={Math.random() * 10000000} text={f.text} 
@@ -297,8 +298,29 @@ export function StackShack(props) {
       )}
       <Plank 
         key={Math.random() * 10000000} text={"WELCOME TO THE STACK-SHACK!"} 
-        x={-15} y={2.8} z={-10} scale={[0.25, 1, 0.25]}
+        x={-15} y={2.8} z={-10} textScale={0.125} scale={[0.25, 1, 0.25]}
         angleX={0} angleY={0} angleZ={0} 
+      />
+      <Plank 
+        key={Math.random() * 10000000} text={"C   U   R   R   E   N   T            S   T   A   C   K"} 
+        x={-21.9} y={3.1} z={-17} textScale={0.125} scale={[0.1, 0.55, 0.4]}
+        angleX={0} angleY={1.55} angleZ={0} 
+      />
+      <Plank 
+        key={Math.random() * 10000000} text={"P  R  E  V  I  O  U  S            S   T   A   C   K"} 
+        x={-15.5} y={3.1} z={-24.9} textScale={0.125} scale={[0.1, 0.55, 0.4]}
+        angleX={0} angleY={0} angleZ={0} 
+      />
+      <Plank 
+        key={Math.random() * 10000000} text={"O  T  H  E  R            S   K  I  L  L  S"} 
+        x={-8.3} y={3.1} z={-17} textScale={0.125} scale={[0.1, 0.55, 0.4]}
+        angleX={0} angleY={-1.55} angleZ={0} 
+      />
+      {/* FLOOR */}
+      <Plank 
+        key={Math.random() * 10000000}
+        x={-15.2} y={-0.1} z={-36} textScale={0.125} scale={[0.6, 20.4, 0.25]}
+        angleX={1.565} angleY={0} angleZ={0} 
       />
     </>
   )
