@@ -26,6 +26,7 @@ function App() {
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
         <Physics gravity={[0, -30, 0]}>
+          <StackShack />
           <RigidBody 
             dispose={null}  
             position={[0, 1, -10]}  
@@ -35,7 +36,6 @@ function App() {
           >
             <TextFrameManager />
             <ImageFrameManager />
-            <StackShack />
           </RigidBody>
           <Ground />
           <Player />
