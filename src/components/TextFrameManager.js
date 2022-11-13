@@ -117,25 +117,101 @@ Press 'o' to open my GitHub account in a new tab.
 
 My first Azure certification, where I learned the fundamentals of cloud and cloud development.
 
+Reason for writing: To improve related knowledge for my current position.
+
 Press 'o' to view my credential in a new tab.
 `,
       key: Math.random() * 10000000,
       link: "https://www.credly.com/badges/40196b25-566f-4b71-9ae4-7d8deb6dc0c1?source=linked_in_profile",
       index: 2, textScale: 0.04,
-      x: -11.5, y: 0.115, z: -3.44, angle: 3.143
+      x: -9.5, y: 0.115, z: -3.44, angle: 3.143
     },
-    { // AZ-900
+    { // AZ-204
       text: 
 `AZ-204 - ASSOCIATE DEVELOPER
 
 My second Azure certification, where I improved my knowledge of cloud development in Azure.
 
+Reason for writing: To improve related knowledge for my current position.
+
 Press 'o' to view my credential in a new tab.
 `,
       key: Math.random() * 10000000,
       link: "https://www.credly.com/badges/e38f77ff-4f9a-4fa6-b8a9-b33b2568932b?source=linked_in_profile",
-      index: 2, textScale: 0.03,
-      x: -9.5, y: 0.115, z: -3.44, angle: 3.143
+      index: 2, textScale: 0.04,
+      x: -7.5, y: 0.115, z: -3.44, angle: 3.143
+    },
+    { // IBM CLOUD APP DEVELOPER
+      text: 
+`IBM 2019 CLOUD APPLICATION DEVELOPER
+
+Badge obtained by completing IBM's full-stack course on cloud development with NodeJS and React.
+
+Reason for writing: While studying at university, I did what I could to improve my knowledge and practical experience after hours.
+
+Press 'o' to view my credential in a new tab.
+`,
+      key: Math.random() * 10000000,
+      link: "https://www.credly.com/badges/2cfb5ea0-2258-40e0-aa04-0b530bf28bed?source=linked_in_profile",
+      index: 2, textScale: 0.04,
+      x: -11.5, y: 0.115, z: -3.44, angle: 3.143
+    },
+    { // Matric
+      text: 
+`MATRIC
+
+Graduated at Höer Volkskool in 2015.
+
+Chosen subjects for grade 10-12:
+- Information Technology
+- Accounting
+- Economy
+
+First language: Afrikaans
+First additional language: English
+`,
+      key: Math.random() * 10000000,
+      link: "https://www.credly.com/badges/2cfb5ea0-2258-40e0-aa04-0b530bf28bed?source=linked_in_profile",
+      index: 2, textScale: 0.04,
+      x: 9.015, y: 0.115, z: 2.1865, angle: 0
+    },
+    { // Matric
+      text: 
+`UNIVERSITY
+
+Graduated at the North-West University, Potchefstroom Campus in 2020.
+
+Degree obtained:
+Bachelors of Science in Information Technology.
+`,
+      key: Math.random() * 10000000,
+      link: "https://www.credly.com/badges/2cfb5ea0-2258-40e0-aa04-0b530bf28bed?source=linked_in_profile",
+      index: 2, textScale: 0.04, scale: [0.25, 1, 1],
+      x: 8.70, y: 0.115, z: -13.1465, angle: -1.625
+    },
+    { // Directional Board 2
+      text: 
+`
+ABOUT ME
+
+Cornelius Frylinck, Junior Software Engineer.......................................
+Experience: +- 2 years............................................................................
+Age: 25....................................................................................................
+
+Country of birth: South Africa................................................................
+Date of birth: 8 September 1997...........................................................
+Married since 20 September 2020 to Julia Frylinck.............................
+
+Hobbies:
+Language learning: took German for a semester at university,........... 
+and currently learning Dutch.............................................................
+Gaming: currently playing Craftopia,......................................................
+Grim Dawn and Vampire Survivors...................................................
+Exercise: competed in strongman competitions from 2013-2018.......
+Watching anime: favorite anime of all time is Overlord.........................
+`,
+      x: -5.5, y: 0.115, z: -12.5, angle: 1.57, scale: [0.5, 1, 1],
+      key: Math.random() * 10000000, textScale: 0.03
     }
   ]
   return (

@@ -12,6 +12,7 @@ import { observer } from "mobx-react-lite"
 import { CanvasStandManager } from "./components/CanvasStandManager.js"
 import { Blocks } from "./components/Blocks.js"
 import { PillarManager } from "./components/PillarManager.js"
+import { MiscObjects } from "./components/MiscObjects.js"
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <StackShack />
           <CanvasStandManager />
         {/* <PillarManager /> */}
-          
+          <MiscObjects />
           <RigidBody 
             dispose={null}  
             position={[0, 1, -10]}  
@@ -60,7 +61,7 @@ function App() {
           <meshStandardMaterial color="#fefefe" />
         </mesh>
         {/* ABOUT SECTION FLOOR */}
-        <mesh position={[-10, 0, 7]} scale={[10, 0.1, 10]}>
+        <mesh position={[-10, 0, 7]} scale={[10, 0.001, 10]}>
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
