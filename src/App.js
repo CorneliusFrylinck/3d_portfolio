@@ -34,7 +34,7 @@ function App() {
         <Physics gravity={[0, -30, 0]}>
           <StackShack />
           <CanvasStandManager />
-        {/* <PillarManager /> */}
+          <PillarManager />
           <MiscObjects />
           <RigidBody 
             dispose={null}  

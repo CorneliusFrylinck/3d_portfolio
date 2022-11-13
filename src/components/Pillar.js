@@ -30,10 +30,10 @@ export function Pillar(props) {
   return (
     <group dispose={null} position={[x, y, z - 0.0011]} scale={scale? scale : 0.5} ref={group}>
     <RigidBody dispose={null} colliders="trimesh">
-      <mesh geometry={base.nodes.Cylinder.geometry} material={base.materials.G} />
-    </RigidBody>
-    <RigidBody dispose={null} colliders="trimesh">
-      <mesh position={[0, trunkHeight/1.36, 0]} geometry={trunk.nodes.Cylinder.geometry} material={trunk.materials.G} scale={[1, trunkHeight, 1]} />
+      <mesh scale={[1, trunkHeight, 1]} >
+        <cylinderBufferGeometry attach="geometry" />
+        <meshStandardMaterial color="#a1a1a1"  />
+      </mesh>
     </RigidBody>
     <RigidBody dispose={null} colliders="cuboid">
       <mesh position={[0, standHeight, 0]} geometry={bookStand.nodes.Cylinder.geometry} material={bookStand.materials.G} scale={[2, 1, 2]}  />
