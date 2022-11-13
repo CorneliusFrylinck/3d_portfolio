@@ -1,30 +1,83 @@
 import { Text } from "@react-three/drei"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import { useStore } from "../stores/imageStore";
+import { observer } from "mobx-react-lite";
 
-export function TextFrame(props) {
+export default observer(function TextFrame(props) {
   const [text,] = useState(props.text);
+  const [key,] = useState(props.idxKey);
   const [x,] = useState(props.x);
   const [y,] = useState(props.y);
   const [z,] = useState(props.z);
+  const [hover, setHover] = useState(false)
   const [angle,] = useState(props.angle);
+  const [link,] = useState(props.link);
   const [scale,] = useState(props.scale !== undefined ? props.scale : 1);
   const [textScale,] = useState(props.textScale !== undefined ? props.textScale : 0.1);
   const [hasFrame,] = useState(props.hasFrame !== undefined ? props.hasFrame : true);
   const [textAlign,] = useState(props.textAlign !== undefined ? props.textAlign : "center");
   const group = useRef();
 
+  const imageStore = useStore();
+
   useEffect(() => {
     group.current.rotateY(angle);
   }, [angle])
+
+  useEffect(() => {
+    // Add image to context store
+    imageStore.addImage({key: key, idx: -1, totalImages: 0});
+  }, [])
+
+  useEffect(() => {
+    console.log("prease")
+    console.log("link: " + link)
+    console.log("hkey: " + imageStore.getHoverKey() + ", key: " + key)
+    console.log("open: " + imageStore.openLive)
+    // Check if link is undefined, hovering over this and check that open live flag is set
+    if (link === undefined || imageStore.getHoverKey() !== key || ! imageStore.openLive) return;
+    console.log("prease2")
+    // Reset flag
+    imageStore.openLive = false;
+    // Open live project in new tab
+    window.open(link, '_blank');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageStore.openLive])
+
+  const onMove = useCallback((e) => {
+    e.stopPropagation()
+    // Set as hovered image
+    // TODO - check distance in player, update implementation
+    imageStore.setHover({key: key, x: x, y: y});
+    console.log("hovering")
+    // Set hovering for highlighting
+    setHover(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const onOut = useCallback(() => {
+    // Set as none hovering if this is the current hovering
+    if (imageStore.getHoverKey() === key) {
+      imageStore.setHover(null);
+    }
+    // Remove highlight
+    setHover(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <group scale={scale} ref={group}>
       {hasFrame && (
       <mesh position={[x, y, z - 0.0011]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
-        <meshStandardMaterial color={"blue"} />
+        <meshStandardMaterial color={hover ? "orange" : "blue"} />
       </mesh>
       )}
+      {/* Cover used to check if this canvas is selected */}
+      <mesh onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
+        <boxGeometry args={[1.1, 1.1, 0.011]} />
+        <meshStandardMaterial color={"black"} opacity={0} transparent />
+      </mesh>
       <mesh position={[x, y, z - 0.001]}>
         <boxGeometry args={[1.03, 1.03, 0.011]} />
         <meshStandardMaterial color={"white"} />
@@ -38,4 +91,4 @@ export function TextFrame(props) {
       </mesh>
     </group>
   )
-}
+})

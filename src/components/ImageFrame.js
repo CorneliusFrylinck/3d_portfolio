@@ -108,7 +108,7 @@ export default observer(function ImageFrame(props) {
       {/* Frame */}
       <mesh position={[x, y, z - 0.0011]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
-        <meshStandardMaterial  color={hover ? "orange" : "blue"} />
+        <meshStandardMaterial color={hover ? "orange" : "blue"} />
       </mesh>
       {/* Inner frame */}
       <mesh position={[x, y, z - 0.001]}>
@@ -121,7 +121,7 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
       {/* Blocker */}
-      <mesh onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.003]}>
+      <mesh position={[x, y, z + 0.003]}>
         <boxGeometry args={[1, 1, 0.01]} />
         <meshStandardMaterial color={"white"} opacity={0} />
       </mesh>

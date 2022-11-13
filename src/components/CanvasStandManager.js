@@ -24,6 +24,16 @@ export function CanvasStandManager(props) {
         x={12.015} y={-0.01} z={-10} textScale={0.125} scale={[0.45, 0.25, 0.25]}
         angleX={0} angleY={3.16} angleZ={0} 
       />
+      <CanvasStand 
+        key={Math.random() * 10000000}
+        x={11.515} y={-0.01} z={10.57} textScale={0.125} scale={[0.45, 0.25, 0.25]}
+        angleX={0} angleY={0} angleZ={0} 
+      />
+      <CanvasStand 
+        key={Math.random() * 10000000}
+        x={9.515} y={-0.01} z={10.57} textScale={0.125} scale={[0.45, 0.25, 0.25]}
+        angleX={0} angleY={0} angleZ={0} 
+      />
     </>
   )
 }

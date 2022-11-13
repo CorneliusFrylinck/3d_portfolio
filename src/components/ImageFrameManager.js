@@ -88,13 +88,11 @@ Press 'o' to open the project in a new tab.
   return (
     <>
       {images.map(f => 
-      <>
-          <ImageFrame 
-            key={f.key} text={f.text} keyProp={f.key}
-            x={f.x} y={f.y} z={f.z} index={f.index} textScale={f.textScale}
-            angle={f.angle} images={f.images} repoLink={f.repoLink} liveLink={f.liveLink}
-          />
-        </>
+        <ImageFrame 
+          key={f.key} text={f.text} keyProp={f.key}
+          x={f.x} y={f.y} z={f.z} index={f.index} textScale={f.textScale}
+          angle={f.angle} images={f.images} repoLink={f.repoLink} liveLink={f.liveLink}
+        />
       )}
     </>
   )
