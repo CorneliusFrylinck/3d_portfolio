@@ -11,6 +11,7 @@ import { StackShack } from "./components/StackShack.js"
 import { observer } from "mobx-react-lite"
 import { CanvasStandManager } from "./components/CanvasStandManager.js"
 import { Blocks } from "./components/Blocks.js"
+import { PillarManager } from "./components/PillarManager.js"
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
         <Physics gravity={[0, -30, 0]}>
           <StackShack />
           <CanvasStandManager />
+        {/* <PillarManager /> */}
+          
           <RigidBody 
             dispose={null}  
             position={[0, 1, -10]}  

@@ -30,13 +30,8 @@ export default observer(function TextFrame(props) {
   }, [])
 
   useEffect(() => {
-    console.log("prease")
-    console.log("link: " + link)
-    console.log("hkey: " + imageStore.getHoverKey() + ", key: " + key)
-    console.log("open: " + imageStore.openLive)
     // Check if link is undefined, hovering over this and check that open live flag is set
     if (link === undefined || imageStore.getHoverKey() !== key || ! imageStore.openLive) return;
-    console.log("prease2")
     // Reset flag
     imageStore.openLive = false;
     // Open live project in new tab
@@ -49,7 +44,6 @@ export default observer(function TextFrame(props) {
     // Set as hovered image
     // TODO - check distance in player, update implementation
     imageStore.setHover({key: key, x: x, y: y});
-    console.log("hovering")
     // Set hovering for highlighting
     setHover(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
