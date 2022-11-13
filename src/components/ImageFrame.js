@@ -10,8 +10,9 @@ export default observer(function ImageFrame(props) {
   const [text,] = useState(props.text);
   // eslint-disable-next-line no-unused-vars
   const [key,] = useState(props.keyProp);
-  // TODO - remove if not using link to project/source, or use it
-  const [link,] = useState(props.link);
+  // Link to Github Repo
+  const [repoLink,] = useState(props.repoLink);
+  const [liveLink,] = useState(props.liveLink);
   const [index,] = useState(props.index);
   const [angle,] = useState(props.angle);
   const [images,] = useState(props.images);
@@ -48,9 +49,33 @@ export default observer(function ImageFrame(props) {
   }, [])
 
   useEffect(() => {
+    // Check if link is undefined, hovering over this and check that open live flag is set
+    if (liveLink === undefined || imageStore.getHoverKey() !== key || ! imageStore.openLive) return;
+    // Reset flag
+    imageStore.openLive = false;
+    // Open live project in new tab
+    window.open(liveLink, '_blank');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageStore.openLive])
+
+  useEffect(() => {
+    // Check if link is undefined, hovering over this and check that open repo flag is set
+    if (repoLink === undefined || imageStore.getHoverKey() !== key || ! imageStore.openRepo) return;
+    // Reset flag
+    imageStore.openRepo = false;
+    // Open repo project in new tab
+    window.open(repoLink, '_blank');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageStore.openRepo])
+
+  useEffect(() => {
+    // Apply rotation
+    group.current.rotateY(angle)
+  }, [angle])
+
+  useEffect(() => {
     image.current.position.setZ(0.009);
     textRef.current.position.setZ(0);
-    console.log(image.current)
     // Add image to context store
     imageStore.addImage({key: key, idx: imageIdx, totalImages: images.length});
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,7 +87,7 @@ export default observer(function ImageFrame(props) {
   }, [angle])
 
   useEffect(() => {
-    // Check if hovering over this
+    // Check if hovering over this and check that actionFlag is set
     if (imageStore.getHoverKey() !== key || !imageStore.actionFlag) return;
     imageStore.actionFlag = false;
     // Check if image is being displayed
@@ -109,6 +134,7 @@ export default observer(function ImageFrame(props) {
       <Text ref={textRef} position={[x, y, z]} fontSize={textScale} maxWidth={1} textAlign={"center"} color={"#5c5c5c"}>
         {text}
       </Text>
+      <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#5c5c5c"} >Press 'e' to switch between the image and the text.</Text>
     </group>
   )
 })

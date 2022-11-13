@@ -1,5 +1,10 @@
 import { makeAutoObservable } from "mobx"
 import {createContext, useContext} from "react"
+import { configure } from "mobx"
+
+configure({
+    enforceActions: "never",
+})
 
 class ImageStore {
     // List of imageFrames in store
@@ -8,6 +13,10 @@ class ImageStore {
     hover = null;
     // Flag if action key pressed
     actionFlag = false;
+    // Open Live Flag
+    openLive = false;
+    // Open Repo Flag
+    openRepo = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -20,8 +29,6 @@ class ImageStore {
 
     // Update selected slideshow
     moveHoveredImage = () => {
-        console.log("moving");
-        console.log(this.hover);
         // Return if not hovering
         if (this.hover === null) return;
         // Set action flag
@@ -42,6 +49,18 @@ class ImageStore {
     getHoverKey = () => {
         if (this.hover === null) return this.hover;
         return this.hover.key;
+    }
+
+    // Open live project in new tab
+    openLiveProject = () => {
+        if (this.hover === null) return;
+        this.openLive = true;
+    }
+
+    // Open live project in new tab
+    openRepoProject = () => {
+        if (this.hover === null) return;
+        this.openRepo = true;
     }
 }
 

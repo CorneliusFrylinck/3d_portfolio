@@ -48,7 +48,7 @@ Intent Architect => Learned and started using for the
 `,
       x: -0.25, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [1.55, 2.6, 1], textScale: 0.04, textAlign: "Left"
     },
-    { // Directional Board
+    { // Directional Board All
       text: 
 `Cornelius Frylinck's Portfolio
 
@@ -66,6 +66,22 @@ About Me                     Education & Certifications
 <========                  =====================>
 `,
       x: 0, y: 0, z: 1.4, angle: 0, scale: [2, 1, 1], textScale: 0.04
+    },
+    { // Directional Board 2
+      text: 
+`
+About Me                               Skills & Experience 
+<========                             ===============>
+`,
+      x: -3, y: 0, z: -8, angle: 1.57, scale: [0.5, 1, 1], textScale: 0.04
+    },
+    { // Directional Board 3
+      text: 
+`
+Projects                               Education & Certifications
+<=======                              =====================>
+`,
+      x: 3.33, y: 0, z: -7, angle: -1.57, scale: [0.5, 1, 1], textScale: 0.04
     }
   ]
   return (

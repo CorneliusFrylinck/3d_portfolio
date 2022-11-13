@@ -19,9 +19,11 @@ export default observer(function Player() {
   const [, get] = useKeyboardControls()
   const imageStore = useStore();
   const [movingImage, setMovingImage] = useState(false);
+  const [openingLive, setOpeningLive] = useState(false);
+  const [openingRepo, setOpeningRepo] = useState(false);
 
   useFrame((state) => {
-    const { forward, backward, left, right, jump, action } = get()
+    const { forward, backward, left, right, jump, action, openRepo, openLive } = get()
     const velocity = ref.current.linvel()
     
     // Update camera
@@ -42,6 +44,26 @@ export default observer(function Player() {
     }else {
       // Set as not released
       setMovingImage(false);
+    }
+
+    // Open Repo project
+    if (!openingRepo && openRepo) {
+      imageStore.openRepoProject();
+      setOpeningRepo(true);
+    }
+    // Reset flag
+    if (openingRepo && !openRepo) {
+      setOpeningRepo(false);
+    }
+
+    // Open Live project
+    if (!openingLive && openLive) {
+      imageStore.openLiveProject();
+      setOpeningLive(true);
+    }
+    // Reset flag
+    if (openingLive && !openLive) {
+      setOpeningLive(false);
     }
     
     sideVector.set(left - right, 0, 0)
