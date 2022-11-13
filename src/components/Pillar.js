@@ -3,8 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import baseUrl from "../assets/PillarBase.glb";
 import trunkUrl from "../assets/PillarTrunk.glb";
 import bookStandUrl from "../assets/BookStand.glb";
-import bookCoverUrl from "../assets/BookCover.glb";
-import bookPagesUrl from "../assets/BookPages.glb";
 import { RigidBody } from "@react-three/rapier"
 
 export function Pillar(props) {
@@ -22,8 +20,6 @@ export function Pillar(props) {
   const base = useGLTF(baseUrl);
   const trunk = useGLTF(trunkUrl);
   const bookStand = useGLTF(bookStandUrl);
-  const bookCover = useGLTF(bookCoverUrl);
-  const bookPages = useGLTF(bookPagesUrl);
 
   useEffect(() => {
     if (angleX) group.current.rotateX(angleX);
@@ -49,5 +45,3 @@ export function Pillar(props) {
 useGLTF.preload(baseUrl);
 useGLTF.preload(trunkUrl);
 useGLTF.preload(bookStandUrl);
-useGLTF.preload(bookCoverUrl);
-useGLTF.preload(bookPagesUrl);
