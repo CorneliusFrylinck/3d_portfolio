@@ -2,6 +2,9 @@
   "name": "3d_portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.9.3"
+  },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.9.0",
     "@react-three/drei": "^9.36.0",
@@ -19,8 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js start",
-    "build": "node NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js build",
+    "start": "NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
