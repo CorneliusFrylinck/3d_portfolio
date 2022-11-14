@@ -1,6 +1,6 @@
 import { Text } from "@react-three/drei"
 import { useState, useRef, useEffect, useCallback } from "react"
-import { useStore } from "../stores/imageStore";
+import { useStore } from "../stores/store.js";
 import { observer } from "mobx-react-lite";
 
 export default observer(function TextFrame(props) {
@@ -18,7 +18,7 @@ export default observer(function TextFrame(props) {
   const [textAlign,] = useState(props.textAlign !== undefined ? props.textAlign : "center");
   const group = useRef();
 
-  const imageStore = useStore();
+  const {imageStore} = useStore();
 
   useEffect(() => {
     group.current.rotateY(angle);
@@ -27,6 +27,7 @@ export default observer(function TextFrame(props) {
   useEffect(() => {
     // Add image to context store
     imageStore.addImage({key: key, idx: -1, totalImages: 0});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

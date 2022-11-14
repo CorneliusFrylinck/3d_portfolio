@@ -5,7 +5,7 @@ import { useThree, useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 import { observer } from "mobx-react-lite"
-import { useStore } from "../stores/imageStore";
+import { useStore } from "../stores/store.js";
 
 var SPEED = 5
 const direction = new THREE.Vector3()
@@ -17,14 +17,32 @@ export default observer(function Player() {
   const rapier = useRapier()
   const { camera } = useThree()
   const [, get] = useKeyboardControls()
-  const imageStore = useStore();
+  const { imageStore, gameStore } = useStore();
   const [movingImage, setMovingImage] = useState(false);
   const [openingLive, setOpeningLive] = useState(false);
   const [openingRepo, setOpeningRepo] = useState(false);
+  const [playPauseFlag, setplayPauseFlag] = useState(false);
 
   useFrame((state) => {
-    const { forward, backward, left, right, jump, action, openRepo, openLive } = get()
+    const { forward, backward, left, right, jump, action, openRepo, openLive, help } = get()
     const velocity = ref.current.linvel()
+
+    // Check if help clicked before stopping other functions
+    if (help && ! playPauseFlag) {
+      // Set flag to insure that the funciton is only called once per click
+      setplayPauseFlag(true);
+      // Play or pause the game
+      gameStore.PlayPause();
+    }
+
+    // Reset flag when released
+    if (! help) {
+      // Play or pause the game
+      setplayPauseFlag(false);
+    }
+
+    // Stop all player functions when paused
+    if (gameStore.paused) return;
     
     // Update camera
     camera.position.set(...ref.current.translation())

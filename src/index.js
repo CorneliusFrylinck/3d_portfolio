@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { imageStore, ImageContext } from './stores/imageStore.js'
+import { store, StoreContext } from './stores/store.js'
+import PauseMenu from "./components/PauseMenu.js"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ImageContext.Provider value={imageStore}>
-    <div style={{height: "100vh"}}>
-      <App />
-      <div className="dot" />
-    </div>
-  </ImageContext.Provider>
+  <StoreContext.Provider value={store}>
+      <div style={{height: "100vh"}}>
+        <PauseMenu />
+        <App />
+      </div>
+  </StoreContext.Provider>
 );

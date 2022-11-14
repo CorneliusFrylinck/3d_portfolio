@@ -1,12 +1,11 @@
 import { makeAutoObservable } from "mobx"
-import {createContext, useContext} from "react"
 import { configure } from "mobx"
 
 configure({
     enforceActions: "never",
 })
 
-class ImageStore {
+export default class ImageStore {
     // List of imageFrames in store
     images = []
     // ImageFrame player is hovering on
@@ -62,12 +61,4 @@ class ImageStore {
         if (this.hover === null) return;
         this.openRepo = true;
     }
-}
-
-export const imageStore = new ImageStore();
-
-export const ImageContext = createContext(imageStore);
-
-export function useStore() {
-    return useContext(ImageContext);
 }

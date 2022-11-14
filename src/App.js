@@ -16,6 +16,7 @@ import { MiscObjects } from "./components/MiscObjects.js"
 
 function App() {
   return (
+    <>
     <KeyboardControls
       map={[
         { name: "forward", keys: ["ArrowUp", "w", "W"] },
@@ -26,6 +27,7 @@ function App() {
         { name: "action", keys: ["e", "E"] },
         { name: "openLive", keys: ["o", "O"] },
         { name: "openRepo", keys: ["g", "G"] },
+        { name: "help", keys: ["h", "H"] },
       ]}>
       <Canvas shadows camera={{ fov: 45 }}>
         <Sky sunPosition={[100, 20, 100]} />
@@ -68,6 +70,7 @@ function App() {
         <PointerLockControls />
       </Canvas>
     </KeyboardControls>
+    </>
   );
 }
 

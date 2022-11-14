@@ -1,7 +1,7 @@
 import { Image, Text } from "@react-three/drei"
 import { observer } from "mobx-react-lite";
 import { useState, useRef, useEffect, useCallback } from "react"
-import { useStore } from "../stores/imageStore";
+import { useStore } from "../stores/store.js";
 
 export default observer(function ImageFrame(props) {
   const [x,] = useState(props.x);
@@ -17,16 +17,16 @@ export default observer(function ImageFrame(props) {
   const [angle,] = useState(props.angle);
   const [images,] = useState(props.images);
   const [hover, setHover] = useState(false)
-  const [imageIdx, setImageIdx] = useState(0);
+  const [imageIdx, ] = useState(0);
   const [textScale,] = useState(props.textScale);
-  const [imageUrl, setImageUrl] = useState(images[0]);
+  const [imageUrl, ] = useState(images[0]);
   const [displayingImage, setDisplayingImage] = useState(true);
   const checker = useRef();
   const textRef = useRef();
   const group = useRef();
   const image = useRef();
 
-  const imageStore = useStore();
+  const { imageStore } = useStore();
 
   const onMove = useCallback((e) => {
     e.stopPropagation()
