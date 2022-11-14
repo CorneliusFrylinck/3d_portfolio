@@ -1,7 +1,5 @@
 import { useGLTF } from "@react-three/drei";
 import { useState, useRef, useEffect } from "react";
-import baseUrl from "../assets/PillarBase.glb";
-import trunkUrl from "../assets/PillarTrunk.glb";
 import bookStandUrl from "../assets/BookStand.glb";
 import { RigidBody } from "@react-three/rapier"
 
@@ -17,8 +15,6 @@ export function Pillar(props) {
   const [standHeight,] = useState(props.standHeight);
   const group = useRef();
 
-  const base = useGLTF(baseUrl);
-  const trunk = useGLTF(trunkUrl);
   const bookStand = useGLTF(bookStandUrl);
 
   useEffect(() => {
@@ -42,6 +38,4 @@ export function Pillar(props) {
   )
 }
 
-useGLTF.preload(baseUrl);
-useGLTF.preload(trunkUrl);
 useGLTF.preload(bookStandUrl);
