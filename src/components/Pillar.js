@@ -13,6 +13,8 @@ export function Pillar(props) {
   const [angleZ,] = useState(props.angleZ);
   const [trunkHeight,] = useState(props.trunkHeight);
   const [standHeight,] = useState(props.standHeight);
+  const [standSize,] = useState(props.standSize);
+  const [standWidthMultiplier,] = useState(props.standWidthMultiplier !== undefined ? props.standWidthMultiplier : 5);
   const group = useRef();
 
   const bookStand = useGLTF(bookStandUrl);
@@ -32,7 +34,7 @@ export function Pillar(props) {
       </mesh>
     </RigidBody>
     <RigidBody dispose={null} colliders="cuboid">
-      <mesh position={[0, standHeight, 0]} geometry={bookStand.nodes.Cylinder.geometry} material={bookStand.materials.G} scale={[2, 1, 2]}  />
+      <mesh position={[0, standHeight, 0]} geometry={bookStand.nodes.Cylinder.geometry} material={bookStand.materials.G} scale={[standSize*standWidthMultiplier, standSize, standSize*2]}  />
     </RigidBody>
     </group>
   )
