@@ -18,22 +18,22 @@ export function MiscObjects(props) {
         {/* WALL */}
         <RigidBody dispose={null} colliders="trimesh">
           {/* BACK WALL */}
-          <mesh position={[0, 0, -40]} scale={[150, 15, 15]} >
+          <mesh position={[0, 0, -40]} scale={[150, 4, 15]} >
             <boxGeometry />
             <meshStandardMaterial color="#1e1e1e" />
           </mesh>
           {/* LEFT WALL */}
-          <mesh position={[-40, 0, 0]} scale={[15, 15, 175]} >
+          <mesh position={[-40, 0, 0]} scale={[15, 4, 175]} >
             <boxGeometry />
             <meshStandardMaterial color="#1e1e1e" />
           </mesh>
           {/* FRONT WALL */}
-          <mesh position={[0, 0, 40]} scale={[150, 15, 15]} >
+          <mesh position={[0, 0, 40]} scale={[150, 4, 15]} >
             <boxGeometry />
             <meshStandardMaterial color="#1e1e1e" />
           </mesh>
           {/* RIGHT WALL */}
-          <mesh position={[40, 0, 0]} scale={[15, 15, 175]} >
+          <mesh position={[40, 0, 0]} scale={[15, 4, 175]} >
             <boxGeometry />
             <meshStandardMaterial color="#1e1e1e" />
           </mesh>
@@ -54,7 +54,7 @@ export function MiscObjects(props) {
           </mesh>
         </RigidBody>
         {/* DUMBELL1 */}
-        <RigidBody position={[-11, 0.05, 8.2]} rotation={[1.775, 0, 0]} dispose={null} colliders="trimesh">
+        <RigidBody position={[-10, 0, 8.9]} rotation={[1.575, 0, -1]} dispose={null} colliders="trimesh">
           <mesh scale={[0.03, 0.4, 0.03]}>
             <cylinderBufferGeometry attach="geometry" />
             <meshStandardMaterial color={db1_Color} />
@@ -69,7 +69,7 @@ export function MiscObjects(props) {
           </mesh>
         </RigidBody>
         {/* DUMBELL2 */}
-        <RigidBody position={[-11, 0, 8.9]} rotation={[1.375, 0, 0]} dispose={null} colliders="trimesh">
+        <RigidBody position={[-10.6, 0, 8.9]} rotation={[1.575, 0, 1]} dispose={null} colliders="trimesh">
           <mesh scale={[0.03, 0.4, 0.03]}>
             <cylinderBufferGeometry attach="geometry" />
             <meshStandardMaterial color={db2_Color} />

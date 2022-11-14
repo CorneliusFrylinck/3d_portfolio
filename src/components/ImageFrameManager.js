@@ -3,6 +3,10 @@ import luxit from '../assets/luxit.png'
 import saveTheDate from '../assets/saveTheDate.png'
 import oldPortfolio from '../assets/oldPortfolio.png'
 import corlinckActivities from '../assets/corlinckActivities.png'
+import Strongman from '../assets/Strongman.jpg'
+import Current from '../assets/Current.jpg'
+import Truck from '../assets/Truck.jpg'
+import Wedding from '../assets/Wedding.jpg'
 
 export function ImageFrameManager() {
   // List of imageFrames
@@ -82,6 +86,38 @@ Press 'o' to open the project in a new tab.
       liveLink: "https://corlinck-activities.herokuapp.com/",
       index: 2, textScale: 0.03,
       x: 12, y: 0.115, z: 0, angle: 0
+    },
+    { // Wedding
+      images: [
+        Wedding
+      ],
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.03,
+      x: -1.9, y: 0.115, z: -13.1, angle: 4, scale: [0.2, 1, 1],
+    },
+    { // Me
+      images: [
+        Current
+      ],
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.03,
+      x: -6.5, y: 0.115, z: -13.1, angle: 4, scale: [0.2, 1, 1],
+    },
+    { // Me
+      images: [
+        Truck
+      ],
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.03,
+      x: -9.595, y: 0.115, z: 2.15, angle: 0, scale: [1, 1, 1],
+    },
+    { // Me
+      images: [
+        Strongman
+      ],
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.03,
+      x: 9.555, y: 0.115, z: -3.5458, angle: 7.85, scale: [1, 1, 1],
     }
   ]
 
@@ -90,7 +126,7 @@ Press 'o' to open the project in a new tab.
       {images.map(f => 
         <ImageFrame 
           key={f.key} text={f.text} keyProp={f.key}
-          x={f.x} y={f.y} z={f.z} index={f.index} textScale={f.textScale}
+          x={f.x} y={f.y} z={f.z} index={f.index} textScale={f.textScale} scale={f.scale}
           angle={f.angle} images={f.images} repoLink={f.repoLink} liveLink={f.liveLink}
         />
       )}

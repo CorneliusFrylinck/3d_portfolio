@@ -13,7 +13,7 @@ export default observer(function ImageFrame(props) {
   // Link to Github Repo
   const [repoLink,] = useState(props.repoLink);
   const [liveLink,] = useState(props.liveLink);
-  const [index,] = useState(props.index);
+  const [scale,] = useState(props.scale);
   const [angle,] = useState(props.angle);
   const [images,] = useState(props.images);
   const [hover, setHover] = useState(false)
@@ -75,7 +75,9 @@ export default observer(function ImageFrame(props) {
 
   useEffect(() => {
     image.current.position.setZ(0.009);
-    textRef.current.position.setZ(0);
+    if (text !== undefined) {
+      textRef.current.position.setZ(0);
+    }
     // Add image to context store
     imageStore.addImage({key: key, idx: imageIdx, totalImages: images.length});
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,6 +92,7 @@ export default observer(function ImageFrame(props) {
     // Check if hovering over this and check that actionFlag is set
     if (imageStore.getHoverKey() !== key || !imageStore.actionFlag) return;
     imageStore.actionFlag = false;
+    if (image === undefined || text === undefined) return;
     // Check if image is being displayed
     if (displayingImage) {
       setDisplayingImage(false);
@@ -104,7 +107,7 @@ export default observer(function ImageFrame(props) {
   }, [imageStore.hover])
 
   return (
-    <group ref={group}>
+    <group scale={scale !== undefined ? scale : 1} ref={group}>
       {/* Frame */}
       <mesh position={[x, y, z - 0.0011]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
@@ -130,11 +133,15 @@ export default observer(function ImageFrame(props) {
         <boxGeometry args={[1, 1, 0.01]} />
         <Image ref={image} raycast={() => null} position={[0, 0, 0.009]} url={imageUrl} />
       </mesh>
-      {/* Display text if slideshow */}
-      <Text ref={textRef} position={[x, y, z]} fontSize={textScale} maxWidth={1} textAlign={"center"} color={"#5c5c5c"}>
-        {text}
-      </Text>
-      <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#5c5c5c"} >Press 'e' to switch between the image and the text.</Text>
+      {/* Display text if has text */}
+      {text !== undefined &&
+        <Text ref={textRef} position={[x, y, z]} fontSize={textScale} maxWidth={1} textAlign={"center"} color={"#5c5c5c"}>
+          {text}
+        </Text>
+      }
+      {text !== undefined && image !== undefined &&
+        <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#f1f1f1"} >Press 'e' to switch between the image and the text.</Text>
+      }
     </group>
   )
 })
