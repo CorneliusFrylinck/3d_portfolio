@@ -48,7 +48,7 @@ Intent Architect => Learned and started using for the
   UserVerification system, however it was decided not to 
   use it any further.
   
-Swbugging => Asking Google how to un-break
+Debugging => Asking Google how to un-break
 `,
       x: -0.25, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [1.55, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
