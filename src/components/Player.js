@@ -7,24 +7,31 @@ import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 import { observer } from "mobx-react-lite"
 import { useStore } from "../stores/store.js";
 
-var SPEED = 5
-const direction = new THREE.Vector3()
-const frontVector = new THREE.Vector3()
-const sideVector = new THREE.Vector3()
+const SPEED = 5;
+const SPRINT_SPEED = 15;
+const MIN_SPEED = 3.5;
+// Higher number means slower speedup/down
+const SPEEDUP_RATE = 150;
+const SPEEDDOWN_RATE = 50;
+var current_speed = 0;
+const direction = new THREE.Vector3();
+const frontVector = new THREE.Vector3();
+const sideVector = new THREE.Vector3();
 
 export default observer(function Player() {
-  const ref = useRef()
-  const rapier = useRapier()
-  const { camera } = useThree()
-  const [, get] = useKeyboardControls()
+  const ref = useRef();
+  const rapier = useRapier();
+  const { camera } = useThree();
+  const [, get] = useKeyboardControls();
   const { imageStore, gameStore } = useStore();
+  const [lastMovement, setlastMovement] = useState({x: 0, z: 0});
   const [movingImage, setMovingImage] = useState(false);
   const [openingLive, setOpeningLive] = useState(false);
   const [openingRepo, setOpeningRepo] = useState(false);
   const [playPauseFlag, setplayPauseFlag] = useState(false);
 
   useFrame((state) => {
-    const { forward, backward, left, right, jump, action, openRepo, openLive, help } = get()
+    const { forward, backward, left, right, jump, action, openRepo, openLive, help, sprint } = get()
     const velocity = ref.current.linvel()
 
     // Check if help clicked before stopping other functions
@@ -84,8 +91,34 @@ export default observer(function Player() {
       setOpeningLive(false);
     }
     
+    // Check if moving 
+    if (frontVector.z !== 0 || sideVector.x !== 0) {
+      // Set movement as last movement for slowdown lag
+      setlastMovement({x: sideVector.x, z: frontVector.z})
+      // Check sprinting
+      if (sprint) {
+        // Speed up until reaching sprint speed
+        if (current_speed < SPRINT_SPEED) {
+          current_speed += SPRINT_SPEED / SPEEDUP_RATE;
+        }
+
+      }else if (current_speed > SPEED) {// Check if speed too much, slow down
+        current_speed -= SPRINT_SPEED / SPEEDUP_RATE;
+
+      }else {// Otherwise speed up until reaching speed
+        current_speed += SPEED / SPEEDUP_RATE;
+
+      }
+    }else {// If not moving, set speed to MIN_SPEED
+      if (current_speed > MIN_SPEED) {
+        current_speed -= SPRINT_SPEED / SPEEDDOWN_RATE;
+        frontVector.z = lastMovement.z;
+        sideVector.x = lastMovement.x;
+      }
+    }
+    
     sideVector.set(left - right, 0, 0)
-    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED).applyEuler(camera.rotation)
+    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(current_speed).applyEuler(camera.rotation)
     ref.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z })
 
     // Jumping

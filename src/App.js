@@ -28,6 +28,7 @@ function App() {
         { name: "openLive", keys: ["o", "O"] },
         { name: "openRepo", keys: ["g", "G"] },
         { name: "help", keys: ["h", "H"] },
+        { name: "sprint", keys: ["shift", "Shift"] },
       ]}>
       <Canvas shadows camera={{ fov: 45 }}>
         <Sky sunPosition={[100, 20, 100]} />
