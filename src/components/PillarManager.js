@@ -21,7 +21,7 @@ export function PillarManager(props) {
       />
       <Pillar 
         key={Math.random() * 10000000}
-        x={12.715} y={-0.01} z={10.5} textScale={0.125} scale={0.35}
+        x={12.915} y={-0.01} z={10.5} textScale={0.125} scale={0.35}
         angleX={0} angleY={0} angleZ={0} trunkHeight={8} standHeight={8.01} standSize={1.3}
       />
     </>

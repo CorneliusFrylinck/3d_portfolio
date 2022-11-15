@@ -17,7 +17,7 @@ BACKEND: .NET Core 6, Integrations with Jumio
 
 ARCHITECTURE: Clean Architecture
 `,
-      x: -1.215, y: 0.2, z: -21.9, angle: 1.43, hasFrame: false, scale: [1.55, 2.6, 1],
+      x: -3.845, y: 0.2, z: -21.9, angle: 1.43, hasFrame: false, scale: [0.5, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
     },
     { // Previous Stack
@@ -32,7 +32,7 @@ ARCHITECTURE: Clean Architecture
   FRONTEND: SYSPRO, Xamarin, WPF
   BACKEND: .NET Core 5, VB Script, SQL Server
 `,
-      x: -1.6, y: 0.2, z: -2.49, angle: 0, hasFrame: false, scale: [9.5, 2.6, 1],
+      x: -5.16, y: 0.2, z: -2.49, angle: 0, hasFrame: false, scale: [3, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.036, textAlign: "Left"
     },
     { // Other Skills
@@ -50,7 +50,7 @@ Intent Architect => Learned and started using for the
   
 Debugging => Asking Google how to un-break
 `,
-      x: -0.25, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [1.55, 2.6, 1],
+      x: -0.7, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [0.5, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
     },
     { // Directional Board All
@@ -70,7 +70,7 @@ Skills & Experience                                Projects
 About Me                     Education & Certifications
 <========                  =====================>
 `,
-      x: 0, y: 0, z: 1.4, angle: 0, scale: [2, 1, 1],
+      x: 0, y: 0, z: 1.4, angle: 0, scale: [1.3, 1, 1],
       key: Math.random() * 10000000, textScale: 0.04
     },
     { // Directional Board 2
@@ -79,7 +79,7 @@ About Me                     Education & Certifications
 About Me                               Skills & Experience 
 <========                             ===============>
 `,
-      x: -3, y: 0, z: -8, angle: 1.57, scale: [0.5, 1, 1],
+      x: -6, y: 0, z: -8, angle: 1.57, scale: [0.25, 1, 1],
       key: Math.random() * 10000000, textScale: 0.04
     },
     { // Directional Board 3
@@ -88,7 +88,7 @@ About Me                               Skills & Experience
 Projects                               Education & Certifications
 <=======                              =====================>
 `,
-      x: 3.33, y: 0, z: -7, angle: -1.57, scale: [0.5, 1, 1], 
+      x: 6.7, y: 0, z: -7, angle: -1.57, scale: [0.25, 1, 1], 
       key: Math.random() * 10000000, textScale: 0.04
     },
     { // LinkedIn
@@ -186,8 +186,8 @@ Bachelors of Science in Information Technology.
 `,
       key: Math.random() * 10000000,
       link: "https://www.credly.com/badges/2cfb5ea0-2258-40e0-aa04-0b530bf28bed?source=linked_in_profile",
-      index: 2, textScale: 0.04, scale: [0.25, 1, 1],
-      x: 8.70, y: 0.115, z: -13.1465, angle: -1.625
+      index: 2, textScale: 0.04, scale: [0.18, 1, 1],
+      x: 12.075, y: 0.115, z: -13.1465, angle: -1.625
     },
     { // Directional Board 2
       text: 
@@ -212,7 +212,7 @@ Watching anime: favorite anime of all time is Overlord.........................
 Chess: I have been playing chess since primary school, .....................
 and still enjoy it today.......................................................................
 `,
-      x: -5.5, y: 0.115, z: -12.5, angle: 1.57, scale: [0.5, 1, 1],
+      x: -10.965, y: 0.115, z: -12.5, angle: 1.57, scale: [0.25, 1, 1],
       key: Math.random() * 10000000, textScale: 0.03
     }
   ]
