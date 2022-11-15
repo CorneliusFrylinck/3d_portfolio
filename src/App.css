@@ -1,11 +1,11 @@
 .modal {
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.975);
+    background-color: rgba(0, 0, 0, 0.95);
     color: #fafafa;
     position: fixed;
     z-index: 999;
-    margin: auto;
+    margin: auto auto;
     text-align: center;
     padding: 0 10%
 }
