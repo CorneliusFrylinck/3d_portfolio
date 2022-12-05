@@ -28,6 +28,7 @@ export default observer(function PauseMenu(props) {
                             </div>
                         ) : (
                             <div>
+                                <div>NOTE: Mobile functionality is under construction and will only be completed on the 7th of December.</div>
                                 <div>To hide or show this menu, click the pause button....................................................</div><br/>
                                 <div>Movement is handled using the arrow buttons on the left of your screen....................</div><br/>
                                 <div>When a canvas has an action, the action will be described on the canvas or above it</div>

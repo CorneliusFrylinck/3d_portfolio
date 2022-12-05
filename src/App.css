@@ -30,12 +30,11 @@
   z-index: 997;
 }
 
-
 .front {
   position: fixed;
   align-content: center;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   width: 2rem;
   height: 2rem;
   text-align: center;
@@ -49,11 +48,68 @@
   position: absolute;
   top: 0.15rem;
   left: 0.6rem;
-  width: 2.5rem;
+  width: 1.5rem;
   height: 1.5rem;
 
   border-style: double;
   border-width: 0px 0px 0px 0.7rem;
   border-color: #202020;
-  
+}
+
+.left {
+  position: relative;
+  background-color: white;
+  left: -4rem;
+  top: 5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.left > div {
+  border-style: solid;
+  border-color: #202020;
+}
+
+.right {
+  position: relative;
+  background-color: white;
+  left: 0rem;
+  top: 2rem;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
+
+.up {
+  position: relative;
+  background-color: white;
+  top: -4rem;
+  left: -2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.down {
+  position: relative;
+  background-color: white;
+  left: -2rem;
+  top: -1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.movement {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+  padding: 0 10%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
