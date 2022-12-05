@@ -10,6 +10,7 @@ export default class GameStore {
 
     PlayPause = () => {
         this.paused = ! this.paused;
+        console.log("pause/played")
     }
 
     setLockControls = (canLock) => {
