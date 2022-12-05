@@ -13,8 +13,10 @@ import { CanvasStandManager } from "./components/CanvasStandManager.js"
 import { Blocks } from "./components/Blocks.js"
 import { PillarManager } from "./components/PillarManager.js"
 import { MiscObjects } from "./components/MiscObjects.js"
+import { useStore } from "./stores/store.js"
 
 function App() {
+  const {gameStore} = useStore();
   return (
     <>
     <KeyboardControls
@@ -68,7 +70,7 @@ function App() {
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
-        <PointerLockControls />
+        {gameStore.lockControls && <PointerLockControls />}
       </Canvas>
     </KeyboardControls>
     </>

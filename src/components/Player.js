@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite"
 import { useStore } from "../stores/store.js";
 
 const SPEED = 5;
-const SPRINT_SPEED = 15;
+const SPRINT_SPEED = 10;
 const MIN_SPEED = 3.5;
 // Higher number means slower speedup/down
 const SPEEDUP_RATE = 150;

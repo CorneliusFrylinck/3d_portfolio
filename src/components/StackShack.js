@@ -1,3 +1,4 @@
+import { RigidBody } from "@react-three/rapier";
 import { Plank } from "./Plank";
 
 export function StackShack(props) {
@@ -268,27 +269,33 @@ export function StackShack(props) {
   return (
     <>
       <directionalLight position={[-12,1,1]} intensity={0.5} />
-      {backWall.map(f => 
-        <Plank 
-          key={Math.random() * 10000000} text={f.text} 
-          x={f.x} y={f.y} z={f.z} scale={f.scale} 
-          angleX={f.angleX} angleY={f.angleY} angleZ={f.angleZ} 
-        />
-      )}
-      {leftWall.map(f => 
-        <Plank 
-          key={Math.random() * 10000000} text={f.text} 
-          x={f.x} y={f.y} z={f.z} scale={f.scale} 
-          angleX={f.angleX} angleY={f.angleY} angleZ={f.angleZ} 
-        />
-      )}
-      {rightWall.map(f => 
-        <Plank 
-          key={Math.random() * 10000000} text={f.text} 
-          x={f.x} y={f.y} z={f.z} scale={f.scale} 
-          angleX={f.angleX} angleY={f.angleY} angleZ={f.angleZ} 
-        />
-      )}
+        <RigidBody type="fixed" colliders="cuboid">
+        {backWall.map(f => 
+          <Plank 
+            key={Math.random() * 10000000} text={f.text} 
+            x={f.x} y={f.y} z={f.z} scale={f.scale} 
+            angleX={f.angleX} angleY={f.angleY} angleZ={f.angleZ} 
+          />
+        )}
+        </RigidBody>
+        <RigidBody type="fixed" colliders="cuboid">
+        {leftWall.map(f => 
+          <Plank 
+            key={Math.random() * 10000000} text={f.text} 
+            x={f.x} y={f.y} z={f.z} scale={f.scale} 
+            angleX={f.angleX} angleY={f.angleY} angleZ={f.angleZ} 
+          />
+        )}
+        </RigidBody>
+        <RigidBody type="fixed" colliders="cuboid">
+        {rightWall.map(f => 
+          <Plank 
+            key={Math.random() * 10000000} text={f.text} 
+            x={f.x} y={f.y} z={f.z} scale={f.scale} 
+            angleX={f.angleX} angleY={f.angleY} angleZ={f.angleZ} 
+          />
+        )}
+        </RigidBody>
       {roof.map(f => 
         <Plank 
           key={Math.random() * 10000000} text={f.text} 

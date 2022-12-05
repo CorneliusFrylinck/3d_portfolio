@@ -39,7 +39,7 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 1s;
-  z-index: 9999;
+  z-index: 990;
 }
 
 .stack {
