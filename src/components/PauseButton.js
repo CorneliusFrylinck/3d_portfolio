@@ -13,7 +13,7 @@ export default observer(function PauseButton(props) {
     return (
         <>
             {! gameStore.lockControls ? (
-                <button className="front" onClick={() => clicked()}><div>&#x23F8;</div></button>
+                <button className="front" onClick={() => clicked()}><div>||</div></button>
             ): (
                 <div></div>
             )}

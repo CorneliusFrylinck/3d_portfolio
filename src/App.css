@@ -33,14 +33,12 @@
 
 .front {
   position: fixed;
-  font-size: 1.7rem;
   align-content: center;
   top: 1rem;
   left: 1rem;
   width: 2rem;
   height: 2rem;
   text-align: center;
-  padding: 0;
   overflow: hidden;
   border-radius: 50%;
   z-index: 9999;
@@ -49,6 +47,13 @@
 
 .front > div {
   position: absolute;
-  top: -0.4rem;
-  left: 0.1rem;
+  top: 0.15rem;
+  left: 0.6rem;
+  width: 2.5rem;
+  height: 1.5rem;
+
+  border-style: double;
+  border-width: 0px 0px 0px 0.7rem;
+  border-color: #202020;
+  
 }
