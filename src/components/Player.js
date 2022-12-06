@@ -15,8 +15,8 @@ const SPEEDUP_RATE = 150;
 const SPEEDDOWN_RATE = 50;
 var current_speed = 0;
 
-const MIN_ROTATION = 0.002;
-const MAX_ROTATION = 0.01;
+const MIN_ROTATION = 0.004;
+const MAX_ROTATION = 0.02;
 
 const direction = new THREE.Vector3();
 const frontVector = new THREE.Vector3();
