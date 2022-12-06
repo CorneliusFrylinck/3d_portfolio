@@ -49,10 +49,10 @@ export default observer(function MobileMovement(props) {
         <>
             {! gameStore.lockControls && ! gameStore.paused ? (
                 <div className="movement" onMouseUp={() => resetButtons()}>
-                    <button className="left" onMouseDown={() => leftClicked()} onMouseUp={() => leftReleased()} ><div></div></button>
-                    <button className="right" onMouseDown={() => rightClicked()} onMouseUp={() => rightReleased()} ><div></div></button>
-                    <button className="up" onMouseDown={() => upClicked()} onMouseUp={() => upReleased()} ><div></div></button>
-                    <button className="down" onMouseDown={() => downClicked()} onMouseUp={() => downReleased()} ><div></div></button>
+                    <button className="left" onMouseDown={() => leftClicked()} onMouseUp={() => leftReleased()} onTouchStart={() => leftClicked()} onTouchEnd={() => leftReleased()} onTouchCancel={() => leftReleased()} ><div></div></button>
+                    <button className="right" onMouseDown={() => rightClicked()} onMouseUp={() => rightReleased()} onTouchStart={() => rightClicked()} onTouchEnd={() => rightReleased()} onTouchCancel={() => rightReleased()} ><div></div></button>
+                    <button className="up" onMouseDown={() => upClicked()} onMouseUp={() => upReleased()} onTouchStart={() => upClicked()} onTouchEnd={() => upReleased()} onTouchCancel={() => upReleased()} ><div></div></button>
+                    <button className="down" onMouseDown={() => downClicked()} onMouseUp={() => downReleased()} onTouchStart={() => downClicked()} onTouchEnd={() => downReleased()} onTouchCancel={() => downReleased()} ><div></div></button>
                 </div>
             ): (
                 <div></div>
