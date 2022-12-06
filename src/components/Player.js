@@ -14,6 +14,10 @@ const MIN_SPEED = 3.5;
 const SPEEDUP_RATE = 150;
 const SPEEDDOWN_RATE = 50;
 var current_speed = 0;
+
+const MIN_ROTATION = 0.001;
+const MAX_ROTATION = 0.005;
+
 const direction = new THREE.Vector3();
 const frontVector = new THREE.Vector3();
 const sideVector = new THREE.Vector3();
@@ -29,9 +33,10 @@ export default observer(function Player() {
   const [openingLive, setOpeningLive] = useState(false);
   const [openingRepo, setOpeningRepo] = useState(false);
   const [playPauseFlag, setplayPauseFlag] = useState(false);
+  let yDir = 0;
 
   useFrame((state) => {
-    const { forward, backward, left, right, jump, action, openRepo, openLive, help, sprint } = get()
+    let { forward, backward, left, right, jump, action, openRepo, openLive, help, sprint } = get()
     const velocity = ref.current.linvel()
 
     // Check if help clicked before stopping other functions
@@ -92,7 +97,7 @@ export default observer(function Player() {
     }
     
     // Check if moving 
-    if (frontVector.z !== 0 || sideVector.x !== 0) {
+    if (gameStore.lockControls && (frontVector.z !== 0 || sideVector.x !== 0)) {
       // Set movement as last movement for slowdown lag
       setlastMovement({x: sideVector.x, z: frontVector.z})
       // Check sprinting
@@ -116,10 +121,31 @@ export default observer(function Player() {
         sideVector.x = lastMovement.x;
       }
     }
+
+    if (! gameStore.lockControls) {
+      current_speed = SPEED;
+
+      if (gameStore.left || gameStore.right) {
+        if (gameStore.left)
+          if (yDir < MAX_ROTATION) yDir += MIN_ROTATION;
+        if (gameStore.right)
+          if (yDir > -MAX_ROTATION) yDir -= MIN_ROTATION;
+      }
+      else yDir = 0;
+      
+      if (gameStore.up) forward = 1;
+      else forward = 0;
+      
+      if (gameStore.down) backward = 1;
+      else backward = 0;
+
+      frontVector.set(0, 0, backward - forward)
+    }
     
     sideVector.set(left - right, 0, 0)
     direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(current_speed).applyEuler(camera.rotation)
     ref.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z })
+    camera.rotateY(yDir);
 
     // Jumping
     const world = rapier.world.raw()

@@ -37,11 +37,18 @@ export default observer(function MobileMovement(props) {
     const downReleased= () => {
         gameStore.setDown(false);
     }
+
+    const resetButtons = () => {
+      gameStore.setLeft(false);
+      gameStore.setRight(false);
+      gameStore.setUp(false);
+      gameStore.setDown(false);
+    }
     
     return (
         <>
             {! gameStore.lockControls && ! gameStore.paused ? (
-                <div className="movement">
+                <div className="movement" onMouseUp={() => resetButtons()}>
                     <button className="left" onMouseDown={() => leftClicked()} onMouseUp={() => leftReleased()} ><div></div></button>
                     <button className="right" onMouseDown={() => rightClicked()} onMouseUp={() => rightReleased()} ><div></div></button>
                     <button className="up" onMouseDown={() => upClicked()} onMouseUp={() => upReleased()} ><div></div></button>

@@ -17,6 +17,14 @@ import { useStore } from "./stores/store.js"
 
 function App() {
   const {gameStore} = useStore();
+
+  const resetButtons = () => {
+    gameStore.setLeft(false);
+    gameStore.setRight(false);
+    gameStore.setUp(false);
+    gameStore.setDown(false);
+  }
+
   return (
     <>
     <KeyboardControls
@@ -32,7 +40,7 @@ function App() {
         { name: "help", keys: ["h", "H"] },
         { name: "sprint", keys: ["shift", "Shift"] },
       ]}>
-      <Canvas shadows camera={{ fov: 45 }}>
+      <Canvas shadows camera={{ fov: 45 }} onMouseUp={() => resetButtons()} >
         <Sky sunPosition={[100, 20, 100]} />
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
@@ -70,7 +78,6 @@ function App() {
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
-        {gameStore.lockControls && <PointerLockControls />}
       </Canvas>
     </KeyboardControls>
     </>
