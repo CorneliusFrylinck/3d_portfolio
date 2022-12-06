@@ -11,6 +11,14 @@ export default observer(function PauseMenu(props) {
         gameStore.setLockControls(! cbxState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cbxState])
+
+    useEffect(() => {
+        if (! gameStore.paused) return;
+
+        let cbx = document.getElementById('isMobile');
+        cbx.checked = cbxState ? true : false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gameStore.paused])
     
     return (
         <>
@@ -35,7 +43,7 @@ export default observer(function PauseMenu(props) {
                             </div>
                         )
                     }
-                    <p> <label><input type="checkbox" onClick={() => setCbxState(state => !state)} />Check if you are using a mobile device</label></p>
+                    <p> <label><input id="isMobile" type="checkbox" onClick={() => setCbxState(state => !state)} />Check if you are using a mobile device</label></p>
                 </div>
             )}
             {! gameStore.paused && 
