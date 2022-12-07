@@ -123,12 +123,10 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
       {/* Blocker */}
-      <div onTouchStart={onMove} onTouchEnd={onOut} >
-        <mesh position={[x, y, z + 0.003]}>
-          <boxGeometry args={[1, 1, 0.01]} />
-          <meshStandardMaterial color={"white"} opacity={0} />
-        </mesh>
-      </div>
+      <mesh position={[x, y, z + 0.003]}>
+        <boxGeometry args={[1, 1, 0.01]} />
+        <meshStandardMaterial color={"white"} opacity={0} />
+      </mesh>
       {/* Image */}
       <mesh position={[x, y, z]}>
         <boxGeometry args={[1, 1, 0.01]} />
