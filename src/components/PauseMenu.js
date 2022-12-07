@@ -50,7 +50,7 @@ export default observer(function PauseMenu(props) {
                 </div>
             )}
             {! gameStore.paused && 
-                <div className="dot" />
+                <div tabIndex="0" className="dot" />
             }
         </>
     )
