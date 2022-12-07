@@ -8,6 +8,7 @@ export default observer(function PauseMenu(props) {
     const [cbxState, setCbxState] = useState(false);
 
     useEffect(() => {
+        // Update lock controls on checkbox changed
         gameStore.setLockControls(! cbxState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cbxState])
@@ -15,7 +16,9 @@ export default observer(function PauseMenu(props) {
     useEffect(() => {
         if (! gameStore.paused) return;
 
+        // Checkbox indicating mobile option
         let cbx = document.getElementById('isMobile');
+        // Update checkbox to current state - if not done it gets reset and out-of-sync when played and paused
         cbx.checked = cbxState ? true : false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameStore.paused])

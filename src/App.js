@@ -18,6 +18,7 @@ import { useStore } from "./stores/store.js"
 function App() {
   const {gameStore} = useStore();
 
+  // If buttons are clicked/touched and not released till after swiping away, release if on canvas
   const resetButtons = () => {
     gameStore.setLeft(false);
     gameStore.setRight(false);
@@ -40,7 +41,7 @@ function App() {
         { name: "help", keys: ["h", "H"] },
         { name: "sprint", keys: ["shift", "Shift"] },
       ]}>
-      <Canvas shadows camera={{ fov: 45 }} onMouseUp={() => resetButtons()} >
+      <Canvas shadows camera={{ fov: 45 }} onMouseUp={() => resetButtons()} onTouchEnd={() => resetButtons()} >
         <Sky sunPosition={[100, 20, 100]} />
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
