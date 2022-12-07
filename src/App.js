@@ -78,6 +78,8 @@ function App() {
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
+        {/* Only lock controls when not on mobile mode */}
+        {gameStore.lockControls && <PointerLockControls />}
       </Canvas>
     </KeyboardControls>
     </>
