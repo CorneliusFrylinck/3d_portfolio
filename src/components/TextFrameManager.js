@@ -37,7 +37,7 @@ ARCHITECTURE: Clean Architecture
     },
     { // Other Skills
       text: 
-`PHP => Only used for university and personal purposed.
+`PHP => Only used for university and personal purposes.
 
 MAUI => Used in projects at Agile Bridge Show & Tells.
 
