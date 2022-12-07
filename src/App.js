@@ -64,17 +64,17 @@ function App() {
           <Player />
         </Physics>
         {/* PROJECT SECTION FLOOR */}
-        <mesh position={[9.5, 0, -7]} scale={[10, 0.1, 10]}>
+        <mesh position={[9.5, 0, -7]} scale={[10, 0.01, 10]}>
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
         {/* EDUCATION SECTION FLOOR */}
-        <mesh position={[9.5, 0, 7]} scale={[10, 0.1, 10]}>
+        <mesh position={[9.5, 0, 7]} scale={[10, 0.01, 10]}>
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
         {/* ABOUT SECTION FLOOR */}
-        <mesh position={[-10, 0, 7]} scale={[10, 0.001, 10]}>
+        <mesh position={[-10, 0, 7]} scale={[10, 0.01, 10]}>
           <boxGeometry />
           <meshStandardMaterial color="#fefefe" />
         </mesh>
