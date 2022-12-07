@@ -135,7 +135,7 @@ export default observer(function Player() {
         current_speed += SPEED / SPEEDUP_RATE;
 
       }
-    }else {// If not moving, set speed to MIN_SPEED
+    }else {// If not moving, reduce speed until MIN_SPEED reached
       if (current_speed > MIN_SPEED) {
         current_speed -= SPRINT_SPEED / SPEEDDOWN_RATE;
         frontVector.z = lastMovement.z;
