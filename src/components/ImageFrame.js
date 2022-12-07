@@ -26,12 +26,11 @@ export default observer(function ImageFrame(props) {
   const group = useRef();
   const image = useRef();
 
-  const { imageStore } = useStore();
+  const { imageStore, gameStore } = useStore();
 
   const onMove = useCallback((e) => {
     e.stopPropagation()
     // Set as hovered image
-    // TODO - check distance in player, update implementation
     imageStore.setHover({key: key, x: x, y: y});
     // Set hovering for highlighting
     setHover(true);
@@ -124,10 +123,12 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
       {/* Blocker */}
-      <mesh position={[x, y, z + 0.003]}>
-        <boxGeometry args={[1, 1, 0.01]} />
-        <meshStandardMaterial color={"white"} opacity={0} />
-      </mesh>
+      <div onTouchStart={onMove} onTouchEnd={onOut} >
+        <mesh position={[x, y, z + 0.003]}>
+          <boxGeometry args={[1, 1, 0.01]} />
+          <meshStandardMaterial color={"white"} opacity={0} />
+        </mesh>
+      </div>
       {/* Image */}
       <mesh position={[x, y, z]}>
         <boxGeometry args={[1, 1, 0.01]} />
@@ -139,8 +140,11 @@ export default observer(function ImageFrame(props) {
           {text}
         </Text>
       }
-      {text !== undefined && image !== undefined &&
+      {text !== undefined && image !== undefined && gameStore.lockControls &&
         <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#f1f1f1"} >Press 'e' to switch between the image and the text.</Text>
+      }
+      {text !== undefined && image !== undefined && ! gameStore.lockControls &&
+        <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#f1f1f1"} >Click on canvas to switch between the image and the text.</Text>
       }
     </group>
   )
