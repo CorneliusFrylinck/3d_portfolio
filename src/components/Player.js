@@ -43,8 +43,10 @@ export default observer(function Player() {
   const { camera } = useThree();
   const [, get] = useKeyboardControls();
 
+  // Store used to manage image-related functions such as switching text and image or opening links
   const { imageStore, gameStore } = useStore();
 
+  // Keep track of X and Z movement values to enable gradual increase and decline
   const [lastMovement, setlastMovement] = useState({x: 0, z: 0});
   // Flag if switching image - flag used to ensure we switch it once per click
   const [movingImage, setMovingImage] = useState(false);
