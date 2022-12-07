@@ -7,35 +7,56 @@ import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 import { observer } from "mobx-react-lite"
 import { useStore } from "../stores/store.js";
 
+// Max speed when walking
 const SPEED = 5;
+// Max speed when sprinting
 const SPRINT_SPEED = 10;
+// Start speed when walking
 const MIN_SPEED = 3.5;
-// Higher number means slower speedup/down
-const SPEEDUP_RATE = 150;
-const SPEEDDOWN_RATE = 50;
-var current_speed = 0;
 
+// Higher number means slower speed up
+const SPEEDUP_RATE = 150;
+// Higher number means faster speed down
+const SPEEDDOWN_RATE = 50;
+
+// Current speed player is moving at
+var current_speed = 0;
+// Current speed player is rotating at
+var current_rotation_speed = 0;
+
+// Start rotation speed
 const MIN_ROTATION = 0.004;
+// Max rotation speed
 const MAX_ROTATION = 0.02;
 
+// Move direction
 const direction = new THREE.Vector3();
+// Vector for forward/backward calculation
 const frontVector = new THREE.Vector3();
+// Vector for left/right calculation
 const sideVector = new THREE.Vector3();
 
 export default observer(function Player() {
+  // Rigid body containing player
   const ref = useRef();
   const rapier = useRapier();
   const { camera } = useThree();
   const [, get] = useKeyboardControls();
+
   const { imageStore, gameStore } = useStore();
+
   const [lastMovement, setlastMovement] = useState({x: 0, z: 0});
+  // Flag if switching image - flag used to ensure we switch it once per click
   const [movingImage, setMovingImage] = useState(false);
+  // Flag if opening live link - flag used to ensure we run it once per click
   const [openingLive, setOpeningLive] = useState(false);
+  // Flag if opening repo link - flag used to ensure we run it once per click
   const [openingRepo, setOpeningRepo] = useState(false);
+  // Flag if playing or pausing
   const [playPauseFlag, setplayPauseFlag] = useState(false);
-  let yDir = 0;
 
   useFrame((state) => {
+    // Get flags for each key to find out if they are being clicked
     let { forward, backward, left, right, jump, action, openRepo, openLive, help, sprint } = get()
     const velocity = ref.current.linvel()
 
@@ -122,30 +143,40 @@ export default observer(function Player() {
       }
     }
 
+    // If mobile, lockControls are switched off
     if (! gameStore.lockControls) {
+      // Set speed
       current_speed = SPEED;
-
+      // Check if left or right are being clicked
       if (gameStore.left || gameStore.right) {
+        // Increase left-rotation speed
         if (gameStore.left)
-          if (yDir < MAX_ROTATION) yDir += MIN_ROTATION;
+          if (current_rotation_speed < MAX_ROTATION) current_rotation_speed += MIN_ROTATION;
+          // Increase right-rotation speed
         if (gameStore.right)
-          if (yDir > -MAX_ROTATION) yDir -= MIN_ROTATION;
-      }
-      else yDir = 0;
+          if (current_rotation_speed > -MAX_ROTATION) current_rotation_speed -= MIN_ROTATION;
+      } // Reset rotation speed
+      else current_rotation_speed = 0;
       
+      // Set if forward pressed
       if (gameStore.up) forward = 1;
       else forward = 0;
-      
+      // Set if backward pressed
       if (gameStore.down) backward = 1;
       else backward = 0;
 
+      // Set forward vector that keeps track of forward/backward movement speed
       frontVector.set(0, 0, backward - forward)
     }
     
+    // Set left/right movement speed
     sideVector.set(left - right, 0, 0)
+    // Create direction object from forward and side vectors
     direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(current_speed).applyEuler(camera.rotation)
+    // Set movement speed
     ref.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z })
-    camera.rotateY(yDir);
+    // Set camera rotation speed
+    camera.rotateY(current_rotation_speed);
 
     // Jumping
     const world = rapier.world.raw()
