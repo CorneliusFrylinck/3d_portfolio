@@ -7,7 +7,7 @@ export default observer(function ImageFrame(props) {
   const [x,] = useState(props.x);
   const [y,] = useState(props.y);
   const [z,] = useState(props.z);
-  const [text,] = useState(props.text);
+  const [text, setText] = useState(props.text);
   // eslint-disable-next-line no-unused-vars
   const [key,] = useState(props.keyProp);
   // Link to Github Repo
@@ -25,6 +25,9 @@ export default observer(function ImageFrame(props) {
   const textRef = useRef();
   const group = useRef();
   const image = useRef();
+  
+  const repoMessage = "\nPress 'g' to open the Github project in a new tab.";
+  const liveMessage = "\nPress 'o' to open the project in a new tab.";
 
   const { imageStore, gameStore } = useStore();
 
@@ -76,6 +79,16 @@ export default observer(function ImageFrame(props) {
     image.current.position.setZ(0.009);
     if (text !== undefined) {
       textRef.current.position.setZ(0);
+
+      if (! gameStore.lockControls) return;
+  
+      if (repoLink !== undefined && liveLink !== undefined) {
+        setText(text + repoMessage + liveMessage);
+      }else if (repoLink !== undefined) {
+        setText(text + repoMessage);
+      }else if (liveLink !== undefined) {
+        setText(text + liveMessage);
+      }
     }
     // Add image to context store
     imageStore.addImage({key: key, idx: imageIdx, totalImages: images.length});
