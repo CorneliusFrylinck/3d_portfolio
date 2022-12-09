@@ -49,8 +49,8 @@ export default observer(function PauseMenu(props) {
                     <p> <label><input id="isMobile" type="checkbox" onClick={() => setCbxState(state => !state)} />Check if you are using a mobile device</label></p>
                 </div>
             )}
-            {! gameStore.paused && 
-                <div tabIndex="0" className="dot" />
+            {! gameStore.paused && gameStore.lockControls &&
+                <div className="dot" />
             }
         </>
     )
