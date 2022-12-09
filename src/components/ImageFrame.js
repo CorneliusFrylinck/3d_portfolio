@@ -50,6 +50,10 @@ export default observer(function ImageFrame(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const openLink = (link) => {
+    window.open(link, "_blank");
+  }
+
   useEffect(() => {
     // Check if link is undefined, hovering over this and check that open live flag is set
     if (liveLink === undefined || imageStore.getHoverKey() !== key || ! imageStore.openLive) return;
@@ -121,6 +125,7 @@ export default observer(function ImageFrame(props) {
 
   const onClick = useCallback((e) => {
     e.stopPropagation()
+    console.log(text)
     // Set as hovered image
       imageStore.setHover({key: key, x: x, y: y});
       if (! gameStore.lockControls) {
@@ -144,7 +149,7 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"white"} />
       </mesh>
       {/* Cover used to check if this canvas is selected */}
-      <mesh ref={checker} onClick={onClick} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
+      <mesh ref={checker} onClick={onClick} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.0095]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
@@ -153,6 +158,44 @@ export default observer(function ImageFrame(props) {
         <boxGeometry args={[1, 1, 0.01]} />
         <meshStandardMaterial color={"white"} opacity={0} />
       </mesh>
+      {/* Repo Link */}
+      {repoLink !== undefined && 
+        <>
+          <mesh onClick={() => openLink(repoLink)} rotation={[1.565, 0, 0]} scale={[0.1, 0.001, 0.1]} position={[x - 0.4, y - 0.4, z + 0.016]}>
+            <cylinderBufferGeometry attach="geometry" />
+            <meshStandardMaterial color="#4c4c4c" opacity={0} transparent />
+          </mesh>
+          <mesh rotation={[1.565, 0, 0]} scale={[0.08, 0.004, 0.08]} 
+          position={[x - 0.4, y - 0.4, z + 0.011]}>
+            <cylinderBufferGeometry attach="geometry" />
+            <meshStandardMaterial color="#4c4c4c" />
+          </mesh>
+          <Text 
+            key={key} maxWidth={0.3} scale={[0.4, 0.4, 10]} position={[x - 0.4, y - 0.4, z + 0.015001]} 
+            textAlign={"center"} color={"#f1f1f1"} 
+            >Repo Link
+          </Text>
+        </>
+      }
+      {/* Live Link */}
+      {liveLink !== undefined && 
+        <>
+          <mesh onClick={() => openLink(liveLink)} rotation={[1.565, 0, 0]} scale={[0.1, 0.001, 0.1]} position={[x + 0.4, y - 0.4, z + 0.016]}>
+            <cylinderBufferGeometry attach="geometry" />
+            <meshStandardMaterial color="limegreen" opacity={0} transparent />
+          </mesh>
+          <mesh rotation={[1.565, 0, 0]} scale={[0.08, 0.004, 0.08]} 
+          position={[x + 0.4, y - 0.4, z + 0.011]}>
+            <cylinderBufferGeometry attach="geometry" />
+            <meshStandardMaterial color="limegreen" />
+          </mesh>
+          <Text 
+            key={key} maxWidth={0.3} scale={[0.4, 0.4, 10]} position={[x + 0.4, y - 0.4, z + 0.015001]} 
+            textAlign={"center"} color={"#f1f1f1"} 
+            >Site Link
+          </Text>
+        </>
+      }
       {/* Image */}
       <mesh position={[x, y, z]}>
         <boxGeometry args={[1, 1, 0.01]} />
