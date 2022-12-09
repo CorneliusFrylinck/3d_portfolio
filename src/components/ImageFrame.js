@@ -159,7 +159,7 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"white"} opacity={0} />
       </mesh>
       {/* Repo Link */}
-      {repoLink !== undefined && 
+      {! gameStore.lockControls && repoLink !== undefined && 
         <>
           <mesh onClick={() => openLink(repoLink)} rotation={[1.565, 0, 0]} scale={[0.1, 0.001, 0.1]} position={[x - 0.4, y - 0.4, z + 0.016]}>
             <cylinderBufferGeometry attach="geometry" />
@@ -178,7 +178,7 @@ export default observer(function ImageFrame(props) {
         </>
       }
       {/* Live Link */}
-      {liveLink !== undefined && 
+      {! gameStore.lockControls && liveLink !== undefined && 
         <>
           <mesh onClick={() => openLink(liveLink)} rotation={[1.565, 0, 0]} scale={[0.1, 0.001, 0.1]} position={[x + 0.4, y - 0.4, z + 0.016]}>
             <cylinderBufferGeometry attach="geometry" />
