@@ -43,7 +43,6 @@ export default observer(function TextFrame(props) {
   const onMove = useCallback((e) => {
     e.stopPropagation()
     // Set as hovered image
-    // TODO - check distance in player, update implementation
     imageStore.setHover({key: key, x: x, y: y});
     // Set hovering for highlighting
     setHover(true);
@@ -60,6 +59,19 @@ export default observer(function TextFrame(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const onClick = useCallback((e) => {
+    e.stopPropagation()
+    // Set as hovered image
+    if (imageStore.getHoverKey() === key) {
+      imageStore.setHover(null);
+    }else {
+      imageStore.setHover({key: key, x: x, y: y});
+      // Set hovering for highlighting
+      setHover(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <group scale={scale} ref={group}>
       {hasFrame && (
@@ -69,7 +81,7 @@ export default observer(function TextFrame(props) {
       </mesh>
       )}
       {/* Cover used to check if this canvas is selected */}
-      <mesh onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
+      <mesh onClick={onClick} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
