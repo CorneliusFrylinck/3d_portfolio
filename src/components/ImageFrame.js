@@ -89,6 +89,7 @@ export default observer(function ImageFrame(props) {
 
   useEffect(() => {
     // Check if hovering over this and check that actionFlag is set
+    if (imageStore.getHoverKey() !== key) setHover(false);
     if (imageStore.getHoverKey() !== key || !imageStore.actionFlag) return;
     imageStore.actionFlag = false;
     if (image === undefined || text === undefined) return;
@@ -110,6 +111,7 @@ export default observer(function ImageFrame(props) {
     // Set as hovered image
     if (imageStore.getHoverKey() === key) {
       imageStore.setHover(null);
+      setHover(false);
     }else {
       imageStore.setHover({key: key, x: x, y: y});
       if (! gameStore.lockControls) {
