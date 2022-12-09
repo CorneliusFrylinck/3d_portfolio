@@ -64,6 +64,7 @@ export default observer(function TextFrame(props) {
     // Set as hovered image
     if (imageStore.getHoverKey() === key) {
       imageStore.setHover(null);
+      setHover(false);
     }else {
       imageStore.setHover({key: key, x: x, y: y});
       // Set hovering for highlighting

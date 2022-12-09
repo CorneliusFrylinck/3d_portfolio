@@ -105,6 +105,22 @@ export default observer(function ImageFrame(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageStore.hover])
 
+  const onClick = useCallback((e) => {
+    e.stopPropagation()
+    // Set as hovered image
+    if (imageStore.getHoverKey() === key) {
+      imageStore.setHover(null);
+    }else {
+      imageStore.setHover({key: key, x: x, y: y});
+      if (! gameStore.lockControls) {
+        imageStore.actionFlag = true;
+      }
+      // Set hovering for highlighting
+      setHover(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <group scale={scale !== undefined ? scale : 1} ref={group}>
       {/* Frame */}
@@ -118,7 +134,7 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"white"} />
       </mesh>
       {/* Cover used to check if this canvas is selected */}
-      <mesh ref={checker} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
+      <mesh ref={checker} onClick={() => onClick} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
