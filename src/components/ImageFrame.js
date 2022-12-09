@@ -109,17 +109,12 @@ export default observer(function ImageFrame(props) {
   const onClick = useCallback((e) => {
     e.stopPropagation()
     // Set as hovered image
-    if (imageStore.getHoverKey() === key) {
-      imageStore.setHover(null);
-      setHover(false);
-    }else {
       imageStore.setHover({key: key, x: x, y: y});
       if (! gameStore.lockControls) {
         imageStore.actionFlag = true;
       }
       // Set hovering for highlighting
       setHover(true);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
