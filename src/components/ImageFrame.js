@@ -134,7 +134,7 @@ export default observer(function ImageFrame(props) {
         <meshStandardMaterial color={"white"} />
       </mesh>
       {/* Cover used to check if this canvas is selected */}
-      <mesh ref={checker} onClick={() => onClick} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
+      <mesh ref={checker} onClick={onClick} onPointerMove={onMove} onPointerOut={onOut} position={[x, y, z + 0.01]}>
         <boxGeometry args={[1.1, 1.1, 0.011]} />
         <meshStandardMaterial color={"black"} opacity={0} transparent />
       </mesh>
