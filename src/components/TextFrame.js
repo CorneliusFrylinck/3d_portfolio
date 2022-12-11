@@ -32,6 +32,7 @@ export default observer(function TextFrame(props) {
 
   useEffect(() => {
     // Check if link is undefined, hovering over this and check that open live flag is set
+    if (imageStore.getHoverKey() !== key) setHover(false);
     if (link === undefined || imageStore.getHoverKey() !== key || ! imageStore.openLive) return;
     // Reset flag
     imageStore.openLive = false;
