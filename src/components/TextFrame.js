@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 
 export default observer(function TextFrame(props) {
   const [text,] = useState(props.text);
+  const [mobileText,] = useState(props.mobileText);
   const [key,] = useState(props.idxKey);
   const [x,] = useState(props.x);
   const [y,] = useState(props.y);
@@ -18,7 +19,7 @@ export default observer(function TextFrame(props) {
   const [textAlign,] = useState(props.textAlign !== undefined ? props.textAlign : "center");
   const group = useRef();
 
-  const {imageStore} = useStore();
+  const {imageStore, gameStore} = useStore();
 
   useEffect(() => {
     group.current.rotateY(angle);
@@ -70,6 +71,10 @@ export default observer(function TextFrame(props) {
       imageStore.setHover({key: key, x: x, y: y});
       // Set hovering for highlighting
       setHover(true);
+      if (link !== undefined) {
+        // Open live project in new tab
+        window.open(link, '_blank');
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -95,7 +100,7 @@ export default observer(function TextFrame(props) {
         <boxGeometry args={[1, 1, 0.01]} />
         <meshStandardMaterial color={"#dedede"} />
         <Text fontSize={textScale} maxWidth={1} textAlign={textAlign} position={[0,0,0.008]} color={"#5c5c5c"}>
-          {text}
+          { gameStore.lockControls || mobileText === undefined ? text : mobileText }
         </Text>
       </mesh>
     </group>

@@ -96,6 +96,7 @@ Projects                               Education & Certifications
 `
 Press 'o' to open my LinkedIn account in a new tab.
 `,
+      mobileText: "Click to open my LinkedIn account in a new tab.",
       key: Math.random() * 10000000,
       link: "https://www.linkedin.com/in/cornelius-frylinck-710698188",
       index: 2, textScale: 0.03,
@@ -106,6 +107,7 @@ Press 'o' to open my LinkedIn account in a new tab.
 `
 Press 'o' to open my GitHub account in a new tab.
 `,
+      mobileText: "Click to open my Github account in a new tab.",
       key: Math.random() * 10000000,
       link: "https://github.com/CorneliusFrylinck?tab=repositories",
       index: 2, textScale: 0.03,
@@ -171,7 +173,6 @@ First language: Afrikaans
 First additional language: English
 `,
       key: Math.random() * 10000000,
-      link: "https://www.credly.com/badges/2cfb5ea0-2258-40e0-aa04-0b530bf28bed?source=linked_in_profile",
       index: 2, textScale: 0.04,
       x: 9.015, y: 0.115, z: 2.1865, angle: 0
     },
@@ -185,7 +186,6 @@ Degree obtained:
 Bachelors of Science in Information Technology.
 `,
       key: Math.random() * 10000000,
-      link: "https://www.credly.com/badges/2cfb5ea0-2258-40e0-aa04-0b530bf28bed?source=linked_in_profile",
       index: 2, textScale: 0.04, scale: [0.18, 1, 1],
       x: 12.075, y: 0.115, z: -13.1465, angle: -1.625
     },
@@ -220,7 +220,7 @@ and still enjoy it today........................................................
     <>
       {frames.map(f => 
         <TextFrame 
-          key={f.key} text={f.text} link={f.link} idxKey={f.key}
+          key={f.key} text={f.text} mobileText={f.mobileText} link={f.link} idxKey={f.key}
           x={f.x} y={f.y} z={f.z} scale={f.scale} textScale={f.textScale}
           angle={f.angle} hasFrame={f.hasFrame} textAlign={f.textAlign}
         />
