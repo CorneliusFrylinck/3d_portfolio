@@ -248,6 +248,14 @@ Design Patterns 1, Complete guide to building an app with .Net Core and React, A
       index: 2, textScale: 0.04, scale: [0.18, 1, 1],
       x: 10.575, y: 0.115, z: -13.1465, angle: -1.625
     },
+    { // Under Construction
+      text: 
+`UNDER CONSTRUCTION
+`,
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.04, scale: [0.18, 1, 1],
+      x: 2.575, y: 0.115, z: -9.1465, angle: -1.625
+    },
     { // Directional Board 2
       text: 
 `
