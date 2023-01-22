@@ -13,6 +13,8 @@ export default observer(function ImageFrame(props) {
   // Link to Github Repo
   const [repoLink,] = useState(props.repoLink);
   const [liveLink,] = useState(props.liveLink);
+  const [textPadding,] = useState(props.textPadding === undefined ? 0 : props.textPadding);
+  const [textBase,] = useState(props.textBase === undefined ? 0 : props.textBase);
   const [scale,] = useState(props.scale);
   const [angle,] = useState(props.angle);
   const [images,] = useState(props.images);
@@ -82,7 +84,7 @@ export default observer(function ImageFrame(props) {
   useEffect(() => {
     image.current.position.setZ(0.009);
     if (text !== undefined) {
-      textRef.current.position.setZ(0);
+      textRef.current.position.setZ(0 + textBase);
 
       if (! gameStore.lockControls) return;
   
@@ -114,12 +116,12 @@ export default observer(function ImageFrame(props) {
     if (displayingImage) {
       setDisplayingImage(false);
       image.current.position.setZ(0);
-      textRef.current.position.setZ(0.009);
+      textRef.current.position.setZ(0.009 + textPadding + textBase);
       return;
     }
     setDisplayingImage(true);
     image.current.position.setZ(0.009);
-    textRef.current.position.setZ(0);
+    textRef.current.position.setZ(0 + textBase);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageStore.hover])
 
@@ -203,15 +205,15 @@ export default observer(function ImageFrame(props) {
       </mesh>
       {/* Display text if has text */}
       {text !== undefined &&
-        <Text ref={textRef} position={[x, y, z]} fontSize={textScale} maxWidth={1} textAlign={"center"} color={"#5c5c5c"}>
+        <Text ref={textRef} position={[x, y, z + textBase]} fontSize={textScale} maxWidth={1} textAlign={"center"} color={"#5c5c5c"}>
           {text}
         </Text>
       }
       {text !== undefined && image !== undefined && gameStore.lockControls &&
-        <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#f1f1f1"} >Press 'e' to switch between the image and the text.</Text>
+        <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#616161"} >Press 'e' to switch between the image and the text.</Text>
       }
       {text !== undefined && image !== undefined && ! gameStore.lockControls &&
-        <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#f1f1f1"} >Click on canvas to switch between the image and the text.</Text>
+        <Text key={key} maxWidth={1} position={[x, y + 0.75, z]} textAlign={"center"} color={"#616161"} >Click on canvas to switch between the image and the text.</Text>
       }
     </group>
   )

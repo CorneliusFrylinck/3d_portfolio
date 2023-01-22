@@ -58,6 +58,12 @@ export function CanvasStandManager(props) {
         x={13.015} y={-0.01} z={5.68} textScale={0.125} scale={[0.45, 0.25, 0.25]}
         angleX={0} angleY={1.575} angleZ={0} 
       />
+      {/* POTATOGEDDON */}
+      <CanvasStand 
+        key={Math.random() * 10000000}
+        x={13.515} y={-0.01} z={-5.47} textScale={0.125} scale={[0.45, 0.25, 0.25]}
+        angleX={0} angleY={1.575} angleZ={0} 
+      />
       {/* MATRIC */}
       <CanvasStand 
         key={Math.random() * 10000000}

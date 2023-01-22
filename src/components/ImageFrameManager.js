@@ -3,6 +3,7 @@ import luxit from '../assets/luxit.png'
 import saveTheDate from '../assets/saveTheDate.png'
 import oldPortfolio from '../assets/oldPortfolio.png'
 import corlinckActivities from '../assets/corlinckActivities.png'
+import potatogeddon from '../assets/potatogeddon.png'
 import Strongman from '../assets/Strongman.jpg'
 import Current from '../assets/Current.jpg'
 import Truck from '../assets/Truck.jpg'
@@ -85,6 +86,29 @@ Though a course can't make a master, it gave me the basics I needed to do well i
       index: 2, textScale: 0.03,
       x: -1.9, y: 0.115, z: -13.1, angle: 4, scale: [0.2, 1, 1],
     },
+    { // POTATOGEDDON
+      text: 
+`POTATOGEDDON
+
+A mobile game written in Godot with C#.
+
+The base game was written in the first week of January 2023, currently the multiplayer logic is being written and should be ready for beta testing at the end of January.
+`,
+      images: [
+        potatogeddon
+      ],
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.04, textPadding: 0, textBase: -2.7,
+      x: 4.5, y: 0.115, z: -2.7, angle: -3.925, scale: [0.18, 1, 5]
+    },
+    { // Wedding
+      images: [
+        Wedding
+      ],
+      key: Math.random() * 10000000,
+      index: 2, textScale: 0.03,
+      x: -1.9, y: 0.115, z: -13.1, angle: 4, scale: [0.2, 1, 1],
+    },
     { // Me
       images: [
         Current
@@ -115,7 +139,7 @@ Though a course can't make a master, it gave me the basics I needed to do well i
     <>
       {images.map(f => 
         <ImageFrame 
-          key={f.key} text={f.text} keyProp={f.key}
+          key={f.key} text={f.text} keyProp={f.key} textPadding={f.textPadding} textBase={f.textBase}
           x={f.x} y={f.y} z={f.z} index={f.index} textScale={f.textScale} scale={f.scale}
           angle={f.angle} images={f.images} repoLink={f.repoLink} liveLink={f.liveLink}
         />

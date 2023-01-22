@@ -176,7 +176,7 @@ First additional language: English
       index: 2, textScale: 0.04,
       x: 9.015, y: 0.115, z: 2.1865, angle: 0
     },
-    { // Matric
+    { // University
       text: 
 `UNIVERSITY
 
