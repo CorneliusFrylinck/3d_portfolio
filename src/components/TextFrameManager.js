@@ -5,7 +5,7 @@ export function TextFrameManager(props) {
     { // Current Stack
       text: 
 `Junior Software Engineer at Agile Bridge
-1 March 2022 - Current
+1 March 2022 - 30 November 2022
 
 
 MAIN PROJECT: Derivco's UserVerification System
@@ -17,10 +17,42 @@ BACKEND: .NET Core 6, Integrations with Jumio
 
 ARCHITECTURE: Clean Architecture
 `,
-      x: -3.845, y: 0.2, z: -21.9, angle: 1.43, hasFrame: false, scale: [0.5, 2.6, 1],
+      x: -2.845, y: 0.2, z: -21.9, angle: 1.43, hasFrame: false, scale: [0.5, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
     },
-    { // Previous Stack
+    { // Current Stack
+      text: 
+`Intermediate Software Engineer at Agile Bridge
+1 December 2022 - Current
+
+
+MAIN PROJECT: Derivco's UserVerification System
+
+STACK:
+FRONTEND: React, TypeScript, BUI components, Jumio
+BACKEND: .NET Core 6, Integrations with Jumio
+  and multiple Derivco APIs, Azure, SQL Server, Kafka
+
+ARCHITECTURE: Clean Architecture
+`,
+      x: -4.845, y: 0.2, z: -21.9, angle: 1.43, hasFrame: false, scale: [0.5, 2.6, 1],
+      key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
+    },
+    { // Previous Stack - Matogen
+      text: 
+`  Software Developer Intern - Matogen
+  1 March 2019 - 31 July 2019
+
+
+  PROJECTS: Chatbot and a virtual medical aid card
+
+  STACK:
+  FRONTEND: Angular, Angular Material
+`,
+      x: -4.16, y: 0.2, z: -2.49, angle: 0, hasFrame: false, scale: [3, 2.6, 1],
+      key: Math.random() * 10000000, textScale: 0.036, textAlign: "Left"
+    },
+    { // Previous Stack - iPlan
       text: 
 `  Junior Software Developer/Junior Analyst at iPlan
   30 November 2021 - 28 February 2022
@@ -31,8 +63,10 @@ ARCHITECTURE: Clean Architecture
   STACK:
   FRONTEND: SYSPRO, Xamarin, WPF
   BACKEND: .NET Core 5, VB Script, SQL Server
+
+  ARCHITECTURE: MVC, MVVM
 `,
-      x: -5.16, y: 0.2, z: -2.49, angle: 0, hasFrame: false, scale: [3, 2.6, 1],
+      x: -6.01, y: 0.2, z: -2.49, angle: 0, hasFrame: false, scale: [3, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.036, textAlign: "Left"
     },
     { // Other Skills
@@ -50,7 +84,19 @@ Intent Architect => Learned and started using for the
   
 Debugging => Asking Google how to un-break
 `,
-      x: -0.7, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [0.5, 2.6, 1],
+      x: 0.2, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [0.5, 2.6, 1],
+      key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
+    },
+    { // Other Skills
+      text: 
+`Student Assistent - North-West University
+July 2018 - June 2020
+
+Grading papers: Mathematics, C#, C++, Java
+
+Assisting students with and grading practicals: C#, C++, Java
+`,
+      x: -1.8, y: 0.2, z: 8.2, angle: -1.67, hasFrame: false, scale: [0.5, 2.6, 1],
       key: Math.random() * 10000000, textScale: 0.04, textAlign: "Left"
     },
     { // Directional Board All

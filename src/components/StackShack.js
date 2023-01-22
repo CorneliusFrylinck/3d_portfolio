@@ -319,8 +319,13 @@ export function StackShack(props) {
         angleX={0} angleY={0} angleZ={0} 
       />
       <Plank 
+        key={Math.random() * 10000000} text={"O  T  H  E  R           E  X  P  E  R  I  E  N  C  E"} 
+        x={-8.3} y={3.1} z={-20.17} textScale={0.125} scale={[0.1, 0.55, 0.4]}
+        angleX={0} angleY={-1.55} angleZ={0} 
+      />
+      <Plank 
         key={Math.random() * 10000000} text={"O  T  H  E  R            S   K  I  L  L  S"} 
-        x={-8.3} y={3.1} z={-17} textScale={0.125} scale={[0.1, 0.55, 0.4]}
+        x={-8.3} y={3.1} z={-14.36} textScale={0.125} scale={[0.1, 0.55, 0.4]}
         angleX={0} angleY={-1.55} angleZ={0} 
       />
       {/* FLOOR */}
