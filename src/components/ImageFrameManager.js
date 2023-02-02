@@ -92,7 +92,7 @@ Though a course can't make a master, it gave me the basics I needed to do well i
 
 A mobile game written in Godot with C#.
 
-The base game was written in the first week of January 2023, currently the multiplayer logic is being written and should be ready for beta testing at the end of January.
+The base game was written in the first week of January 2023.
 `,
       images: [
         potatogeddon
